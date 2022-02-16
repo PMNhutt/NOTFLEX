@@ -1,0 +1,56 @@
+.row{
+    margin-left: 4vw;
+    position: relative;
+    z-index: 9;
+    top: -15vw;
+}
+
+.row_title {
+    font-size: 1.3vw;
+    letter-spacing: 0.8px;
+    user-select: none;
+}
+
+.row_posters {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+/*fix this*/
+.row_posters::-webkit-scrollbar {
+    display: none;
+}
+
+.row_posters img {
+    border-radius: 4px;
+}
+
+.row_poster {
+    width: 100%;
+    max-height: 9vw;
+    object-fit: contain;
+    transition: transform 450ms;
+    margin-right: 10px;
+    user-select: none;
+}
+
+
+.row_posterLarge{
+    max-height: 18vw;
+}
+
+.row_poster:hover{
+    transform: scale(1.6);
+    cursor: pointer;
+}
+
+.row_posterLarge:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.movie_row_name {
+    display: none;
+}

@@ -1,0 +1,61 @@
+/* basic styles */
+.skeleton {
+    background-color: #363636;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.skeleton.text {
+    width: 100%;
+    height: 12px;
+}
+
+.skeleton.title {
+    width: 50%;
+    height: 20px;
+    margin-bottom: 15px;
+}
+
+.skeleton.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.skeleton.thumbnail {
+    width: 100px;
+    height: 100px;
+}
+
+.skeleton.poster {
+    width: 16vw;
+    height: 9vw;
+    background: transparent;
+}
+
+.skeleton.largePoster {
+    width: 100%;
+    max-height: 18vw;
+}
+
+.skeleton-wrapper {
+    margin-right: 10px;
+}
+
+/* animation */
+.skeleton-poster {
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    animation: loading 1s linear infinite alternate;
+}
+
+@keyframes loading {
+    0% {
+        background-color: #363636;
+    }
+    100% {
+        background-color: #4d4d4d;
+
+    }
+}

@@ -1,0 +1,42 @@
+.footer-container {
+    max-width: 980px;
+    margin: 20px auto 0;
+    padding: 0 4%;
+    color: grey;
+    user-select: none;
+}
+
+.footer-socialLink {
+    margin-bottom: 15px;
+}
+
+.link {
+    font-size: 1.5vw;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 1.6vw;
+    margin-right: 0.9vw;
+}
+
+.content-members {
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.member {
+    margin-bottom: 15px;
+    font-size: 0.9vw;
+    cursor: pointer;
+}
+
+.member:hover {
+    text-decoration: underline;
+}
+
+.footer-copyRight {
+    font-size: 11px;
+    margin-bottom: 15px;
+}
