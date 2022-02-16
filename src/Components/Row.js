@@ -24,7 +24,7 @@ function Row({ title, fetchUrl, isLarge }) {
             return request;
         }
         fetchData();
-    }, []);
+    }, [fetchUrl]);
 
 
 

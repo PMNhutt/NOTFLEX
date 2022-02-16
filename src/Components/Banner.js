@@ -18,7 +18,7 @@ function Banner({fetchBannerData}) {
             return request;
         }
         fetchData();
-    }, []);
+    }, [fetchBannerData]);
 
 
     // console.log(movie);
