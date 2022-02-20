@@ -12,7 +12,8 @@ const requests = {
     fetchTVAction: `discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&with_genres=10759`,
     fetchTVComedy: `discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&with_genres=35`,
     fetchTVAnimation: `discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&with_genres=16`,
-    fetchGenres: `/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+    fetchMoviesGenres: `/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+    fetchTVShowGenres: `/genre/tv/list?api_key=${API_KEY}&language=en-US`,
     fetchTVLatest: `/tv/latest?api_key=${API_KEY}&language=en-US`,
 }
 

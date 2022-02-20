@@ -3,6 +3,7 @@
     position: relative;
     z-index: 9;
     top: -15vw;
+    overflow: hidden;
 }
 
 .row_title {
@@ -13,15 +14,16 @@
 
 .row_posters {
     display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
+    /* overflow-y: hidden;
+    overflow-x: scroll; */
     padding-top: 20px;
     padding-bottom: 50px;
+    transition: all 0.6s ease;
 }
 /*fix this*/
-.row_posters::-webkit-scrollbar {
+/* .row_posters::-webkit-scrollbar {
     display: none;
-}
+} */
 
 .row_posters img {
     border-radius: 4px;
@@ -39,6 +41,7 @@
 
 .row_posterLarge{
     max-height: 18vw;
+    position: relative;
 }
 
 .row_poster:hover{
@@ -48,9 +51,36 @@
 
 .row_posterLarge:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.4);
+    z-index: 20;
 }
+
+/* .row_posterLarge:hover ~ .row_posterLarge {
+    transform: translateX(22%);
+} */
 
 .movie_row_name {
     display: none;
+}
+
+.slider {
+    position: absolute;
+    /* background-color: rgba(22, 22, 22, 0.5); */
+    /* background-image: linear-gradient(to right,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%); */
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    margin: auto;
+    z-index: 99;
+}
+
+.left {
+    left: 0;
+    background-image: linear-gradient(to left,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.45) 44%,rgba(20, 20, 20, 0.5) 100%);
+
+}
+.right {
+    right: 0;
+    background-image: linear-gradient(to right,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.45) 44%,rgba(20, 20, 20, 0.5) 100%);
+
 }
