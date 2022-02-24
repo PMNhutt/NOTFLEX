@@ -1,17 +1,14 @@
 .movie-posters {
     width: 12vw;
-    height: 19vw;
-    /* margin-right: 1vw; */
+    height: 18vw;
     user-select: none;
     cursor: pointer;
     border-radius:  4px;
-    -o-transition: all 1s;
-    -ms-transition: all 1s;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55); 
-    box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55);
+    -o-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
 }
 
 .movie-posters:hover{
@@ -20,27 +17,26 @@
     -webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55); 
     box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55);
     transform: translateX(1%);
-    margin-right: 1vw;
+    margin-left: 4px;
     animation-name: goIn;
-    animation-duration: 1s;
-    transition-delay: 1s;
-    animation-delay: 1s;
-    position: relative;
-    z-index: 99;
+    animation-duration: 0.8s;
+    transition-delay: 0.8s;
+    animation-delay: 0.8s;
 }
 
 @keyframes goIn {
     0%{
         opacity: 0;
-        transform: translateX(-40%)
+        /* transform: translateX(-40%) */
     }
     100%{
         opacity: 1;
+        /* transform: translateX(0%) */
     }
 }
 
 
-.movie-posters:hover > .movie-backdrop img {
+/* .movie-posters:hover > .movie-backdrop img {
     border-radius: 4px;
     -o-transition: all 1s;
     -ms-transition: all 1s;
@@ -61,17 +57,17 @@
         opacity: 1;
         max-height: 12vw;
     }
-}
+} */
 
-.movie-posters:hover > .movie-img  {
+.movie-posters:hover .movie-img  {
     border-radius: 4px;
-    -o-transition: all 1s;
-    -ms-transition: all 1s;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
-    transition-delay: 1s;
-    animation: sizeDown 1s;
+    -o-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
+    transition-delay: 0.8s;
+    animation: sizeDown 0.8s;
 }
 
 @keyframes sizeDown {
@@ -84,30 +80,36 @@
 }
 
 
-.movie-img img {
+/* .movie-img img {
     max-height: 19vw;
     border-radius: 4px;
     object-fit: contain;
-}
+} */
 
 .movie-img {
-    width: 100%;
-    /* height: 100%; */
+    width: 12vw;
+    height: 100%;
     background-size: cover;
     border-radius: 4px;
+    -o-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
 }
 
 .movie-backdrop {
     height: 12vw;
     background-size: cover;
-    border-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px ;
     background-repeat: no-repeat;
 }
 
-.movie-backdrop img {
+/* .movie-backdrop img {
     border-radius: 4px;
     max-height: 12vw;
-}
+} */
 
 
 .poster-info {
@@ -119,7 +121,7 @@
 
 .movie-posters:hover .poster-info {
     opacity: 1;
-    transition-delay: 1s;
+    transition-delay: 0.8s;
     top: 12vw;
 }
 

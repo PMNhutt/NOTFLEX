@@ -8,12 +8,12 @@ import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 function MoviePoster({ baseUrl, movie }) {
 
     const [isHover, setIsHover] = useState(false)
-    const [delayHandler, setDelayHandler] = useState(null)
+    const [delayHandler, setDelayHandler] = useState()
 
     const handleMouseEnter = () => {
         setDelayHandler(setTimeout(() => {
             setIsHover(true)
-        }, 1000))
+        }, 800))
     }
 
     const handleMouseLeave = () => {
