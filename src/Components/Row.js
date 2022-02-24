@@ -25,7 +25,6 @@ function Row({ title, fetchUrl}) {
         async function fetchData() {
             const request = await axios.get(fetchUrl)
             // setMovies(request.data.results)
-            console.log(request.data.results)
             setMovies({
                 loading: false,
                 data: request.data.results

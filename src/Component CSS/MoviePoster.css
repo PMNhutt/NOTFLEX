@@ -4,11 +4,11 @@
     user-select: none;
     cursor: pointer;
     border-radius:  4px;
-    -o-transition: all 0.8s ease-in-out;
-    -ms-transition: all 0.8s ease-in-out;
-    -webkit-transition: all 0.8s ease-in-out;
-    -moz-transition: all 0.8s ease-in-out;
-    transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -ms-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -webkit-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -moz-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
 }
 
 .movie-posters:hover{
@@ -18,59 +18,37 @@
     box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55);
     transform: translateX(1%);
     margin-left: 4px;
+    margin-right: 4px;
     animation-name: goIn;
     animation-duration: 0.8s;
     transition-delay: 0.8s;
     animation-delay: 0.8s;
+    /* transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55); */
 }
 
 @keyframes goIn {
     0%{
         opacity: 0;
-        /* transform: translateX(-40%) */
     }
     100%{
         opacity: 1;
-        /* transform: translateX(0%) */
     }
 }
 
 
-/* .movie-posters:hover > .movie-backdrop img {
-    border-radius: 4px;
-    -o-transition: all 1s;
-    -ms-transition: all 1s;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s;
-    transition-delay: 1s;
-    animation: sizeImg 1s;
-}
-
-@keyframes sizeImg {
-    0%{
-        opacity: 0;
-        max-height: 12vw;
-        transform: translateX(-40%);
-    }
-    100%{
-        opacity: 1;
-        max-height: 12vw;
-    }
-} */
 
 .movie-posters:hover .movie-img  {
     border-radius: 4px;
-    -o-transition: all 0.8s ease-in-out;
-    -ms-transition: all 0.8s ease-in-out;
-    -webkit-transition: all 0.8s ease-in-out;
-    -moz-transition: all 0.8s ease-in-out;
-    transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -ms-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -webkit-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -moz-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
     transition-delay: 0.8s;
-    animation: sizeDown 0.8s;
+    animation: changeOpacity 0.8s;
 }
 
-@keyframes sizeDown {
+@keyframes changeOpacity {
     0% {
         opacity: 1;
     }
@@ -80,22 +58,16 @@
 }
 
 
-/* .movie-img img {
-    max-height: 19vw;
-    border-radius: 4px;
-    object-fit: contain;
-} */
-
 .movie-img {
     width: 12vw;
     height: 100%;
     background-size: cover;
     border-radius: 4px;
-    -o-transition: all 0.8s ease-in-out;
-    -ms-transition: all 0.8s ease-in-out;
-    -webkit-transition: all 0.8s ease-in-out;
-    -moz-transition: all 0.8s ease-in-out;
-    transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -ms-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -webkit-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -moz-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
 }
 
 .movie-backdrop {
@@ -106,24 +78,28 @@
     background-repeat: no-repeat;
 }
 
-/* .movie-backdrop img {
-    border-radius: 4px;
-    max-height: 12vw;
-} */
-
+.movie-posters:hover .poster-info {
+    opacity: 1;
+    transition-delay: 0.8s;
+    top: 9vw;
+}
 
 .poster-info {
     position: absolute;
     opacity: 0;
-    top: 12vw;
+    top: 10vw;
     padding: 0.5vw;
+    width: 95.5%;
+    background: rgb(20,20,20);
+background: linear-gradient(0deg, rgba(20,20,20,1) 59%, rgba(20,20,20,0.9721638655462185) 67%, rgba(20,20,20,0.5519957983193278) 82%, rgba(20,20,20,0.2774859943977591) 89%, rgba(20,20,20,0.15423669467787116) 94%, rgba(20,20,20,0) 100%);
 }
 
-.movie-posters:hover .poster-info {
-    opacity: 1;
-    transition-delay: 0.8s;
-    top: 12vw;
+.poster-title {
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
+    font-weight: bold;
+    letter-spacing: 0.1vw;
 }
+
 
 .poster-icons .poster-icon {
     font-size: 3vw;
@@ -133,6 +109,17 @@
 .poster-icons :hover {
     color: #b1aeae;
 }
+
+.poster-genres ul {
+    padding: 0;
+    display: flex;
+}
+
+.poster-genres ul li {
+    margin-left: 0.5vw;
+    list-style: none;
+}
+
 
 
 
