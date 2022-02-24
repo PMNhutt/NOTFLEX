@@ -8,7 +8,7 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 
 const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
 
-function Row({ title, fetchUrl, isLarge }) {
+function Row({ title, fetchUrl}) {
     const [movies, setMovies] = useState({
         loading: true,
         data: [],
@@ -25,6 +25,7 @@ function Row({ title, fetchUrl, isLarge }) {
         async function fetchData() {
             const request = await axios.get(fetchUrl)
             // setMovies(request.data.results)
+            console.log(request.data.results)
             setMovies({
                 loading: false,
                 data: request.data.results
@@ -39,23 +40,23 @@ function Row({ title, fetchUrl, isLarge }) {
         if (direction == "left" && slideNum > 0) {
             setIsMovedRight(false)
             if (slideNum == 10) {
-                setSlideNum(slideNum - 5)
                 listRef.current.style.transform = `translateX(${1140 + distance}px)`
+                setSlideNum(slideNum - 5)
             } else {
                 setIsMovedLeft(false)
-                setSlideNum(slideNum - 5)
                 listRef.current.style.transform = `translateX(${1330 + distance}px)`
+                setSlideNum(slideNum - 5)
             }
         }
         if (direction == "right" && slideNum < 10) {
             setIsMovedLeft(true)
             if (slideNum < 5) {
-                setSlideNum(slideNum + 5)
                 listRef.current.style.transform = `translateX(${-1330 + distance}px)`
+                setSlideNum(slideNum + 5)
             } else {
                 setIsMovedRight(true)
-                setSlideNum(slideNum + 5)
                 listRef.current.style.transform = `translateX(${-1140 + distance}px)`
+                setSlideNum(slideNum + 5)
             }
         }
     }
@@ -85,7 +86,7 @@ function Row({ title, fetchUrl, isLarge }) {
 
                 {!movies.loading ? (movies.data.map(movie => (
                     <React.Fragment key={movie.id}>
-                        <MoviePoster baseUrl={baseUrl} isLarge={isLarge} movie={movie} />
+                        <MoviePoster baseUrl={baseUrl} movie={movie} />
                         {/* <p className="movie_row_name">{movie.name || movie.original_title || movie.orginal_name}</p> */}
                         {/* <p className="movie-row-name">{movie.vote_everage}</p> */}
                     </React.Fragment>

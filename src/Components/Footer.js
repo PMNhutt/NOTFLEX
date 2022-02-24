@@ -35,7 +35,7 @@ function Footer() {
       </div>
 
       <div className="footer-copyRight">
-            @2022 Notflex by NhutPM
+            @2022 Netflix clone by NhutPM
       </div>
     </div>
   )

@@ -23,27 +23,22 @@ function Movies({ title }) {
         <Row
           title="Top Rated Movies"
           fetchUrl={requests.fetchTopRated}
-          isLarge
         />
         <Row
           title="Action Movies"
           fetchUrl={requests.fetchActionMovies}
-          isLarge
         />
         <Row
           title="Comedy Movies"
           fetchUrl={requests.fetchComedyMovies}
-          isLarge
         />
         <Row
           title="Horror Movies"
           fetchUrl={requests.fetchHorrorMovies}
-          isLarge
         />
         <Row
           title="Romance Movies"
           fetchUrl={requests.fetchRomanceMovies}
-          isLarge
         />
       </div>
     </AnimatedPage>

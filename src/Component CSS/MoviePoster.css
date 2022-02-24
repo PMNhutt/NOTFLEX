@@ -1,0 +1,144 @@
+.movie-posters {
+    width: 12vw;
+    height: 19vw;
+    /* margin-right: 1vw; */
+    user-select: none;
+    cursor: pointer;
+    border-radius:  4px;
+    -o-transition: all 1s;
+    -ms-transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55); 
+    box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55);
+}
+
+.movie-posters:hover{
+    width: 21.4vw;
+    background: #141414;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55); 
+    box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55);
+    transform: translateX(1%);
+    margin-right: 1vw;
+    animation-name: goIn;
+    animation-duration: 1s;
+    transition-delay: 1s;
+    animation-delay: 1s;
+    position: relative;
+    z-index: 99;
+}
+
+@keyframes goIn {
+    0%{
+        opacity: 0;
+        transform: translateX(-40%)
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+.movie-posters:hover > .movie-backdrop img {
+    border-radius: 4px;
+    -o-transition: all 1s;
+    -ms-transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+    transition-delay: 1s;
+    animation: sizeImg 1s;
+}
+
+@keyframes sizeImg {
+    0%{
+        opacity: 0;
+        max-height: 12vw;
+        transform: translateX(-40%);
+    }
+    100%{
+        opacity: 1;
+        max-height: 12vw;
+    }
+}
+
+.movie-posters:hover > .movie-img  {
+    border-radius: 4px;
+    -o-transition: all 1s;
+    -ms-transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
+    transition-delay: 1s;
+    animation: sizeDown 1s;
+}
+
+@keyframes sizeDown {
+    0% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+
+.movie-img img {
+    max-height: 19vw;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+.movie-img {
+    width: 100%;
+    /* height: 100%; */
+    background-size: cover;
+    border-radius: 4px;
+}
+
+.movie-backdrop {
+    height: 12vw;
+    background-size: cover;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+}
+
+.movie-backdrop img {
+    border-radius: 4px;
+    max-height: 12vw;
+}
+
+
+.poster-info {
+    position: absolute;
+    opacity: 0;
+    top: 12vw;
+    padding: 0.5vw;
+}
+
+.movie-posters:hover .poster-info {
+    opacity: 1;
+    transition-delay: 1s;
+    top: 12vw;
+}
+
+.poster-icons .poster-icon {
+    font-size: 3vw;
+    margin-right: 0.4vw;
+}
+
+.poster-icons :hover {
+    color: #b1aeae;
+}
+
+
+
+
+
+
+
+
+
+
+
