@@ -35,7 +35,7 @@ function Row({ title, fetchUrl, fetchGenres}) {
         fetchData();
     }, [fetchUrl]);
 
-    console.log(movies)
+    // console.log(movies)
 
     //get genre list
     useEffect(() => {
