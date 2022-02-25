@@ -12,6 +12,7 @@ function Banner({ fetchBannerData, type, fetchCategories }) {
     const [movie, setMovie] = useState([]);
     const [categories, setCategories] = useState([]);
 
+    //get movies
     useEffect(() => {
         async function fetchData() {
             const request = await axios.get(fetchBannerData)
@@ -24,6 +25,7 @@ function Banner({ fetchBannerData, type, fetchCategories }) {
         fetchData();
     }, [fetchBannerData]);
 
+    //get genres list
     useEffect(() => {
         async function fetchData() {
             const requestCate = await axios.get(fetchCategories)
@@ -33,7 +35,6 @@ function Banner({ fetchBannerData, type, fetchCategories }) {
         fetchData();
     }, [fetchCategories])
 
-    // console.log(movie);
     function truncate(str, n) {
         return str?.length > n ? str.substr(0, n - 1) + " ..." : str;
     }
