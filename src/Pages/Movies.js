@@ -18,32 +18,37 @@ function Movies({ title }) {
         <Banner
           fetchBannerData={requests.fetchActionMovies}
           fetchCategories={requests.fetchMoviesGenres}
-          type={"movies"}
+          type="movies"
         />
         <Row
           title="Top Rated Movies"
           fetchUrl={requests.fetchTopRated}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Action Movies"
           fetchUrl={requests.fetchActionMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Comedy Movies"
           fetchUrl={requests.fetchComedyMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Horror Movies"
           fetchUrl={requests.fetchHorrorMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Romance Movies"
           fetchUrl={requests.fetchRomanceMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
       </div>
     </AnimatedPage>

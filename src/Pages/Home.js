@@ -20,41 +20,49 @@ function Home({ title }) {
           title="NOTFLEX ORIGINALS"
           fetchUrl={requests.fetchNetflixOriginals}
           fetchGenres={requests.fetchTVShowGenres}
+          type="tvShows"
         />
         <Row
           title="Trending Now"
           fetchUrl={requests.fetchTrending}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Top Rated"
           fetchUrl={requests.fetchTopRated}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Action Movies"
           fetchUrl={requests.fetchActionMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Comedy Movies"
           fetchUrl={requests.fetchComedyMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Horror Movies"
           fetchUrl={requests.fetchHorrorMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Romance Movies"
           fetchUrl={requests.fetchRomanceMovies}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
         <Row
           title="Documentaries"
           fetchUrl={requests.fetchDocumentaries}
           fetchGenres={requests.fetchMoviesGenres}
+          type="movies"
         />
       </div>
     </AnimatedPage>

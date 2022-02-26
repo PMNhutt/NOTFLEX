@@ -23,21 +23,25 @@ function TVShows({ title }) {
           title="TV Shows Original"
           fetchUrl={requests.fetchNetflixOriginals}
           fetchGenres={requests.fetchTVShowGenres}
+          type="tvShows"
         />
         <Row
           title="TV Shows Action"
           fetchUrl={requests.fetchTVAction}
           fetchGenres={requests.fetchTVShowGenres}
+          type="tvShows"
         />
         <Row
           title="TV Shows Animation"
           fetchUrl={requests.fetchTVAnimation}
           fetchGenres={requests.fetchTVShowGenres}
+          type="tvShows"
         />
         <Row
           title="TV Shows Comedy"
           fetchUrl={requests.fetchTVComedy}
           fetchGenres={requests.fetchTVShowGenres}
+          type="tvShows"
         />
 
       </div>

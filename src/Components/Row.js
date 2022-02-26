@@ -8,7 +8,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
 
-function Row({ title, fetchUrl, fetchGenres}) {
+function Row({ title, fetchUrl, fetchGenres, type}) {
     const [movies, setMovies] = useState({
         loading: true,
         data: [],
@@ -98,7 +98,7 @@ function Row({ title, fetchUrl, fetchGenres}) {
 
                 {!movies.loading ? (movies.data.map(movie => (
                     <React.Fragment key={movie.id}>
-                        <MoviePoster baseUrl={baseUrl} movie={movie} genres={genre}/>
+                        <MoviePoster baseUrl={baseUrl} movie={movie} genres={genre} movieId={movie.id} type={type}/>
                     </React.Fragment>
                 ))) : [1, 2, 3, 4, 5, 6].map((n) => (
                     <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rectangular" animation="wave" width={210} height={118} key={n} />
