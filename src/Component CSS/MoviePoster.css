@@ -76,6 +76,7 @@
     border-top-right-radius: 4px;
     border-top-left-radius: 4px ;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 .movie-posters:hover .poster-info {
@@ -152,6 +153,10 @@
     font-size: .9vw;
     letter-spacing: 0.05vw;
 
+}
+
+.embed-youtube {
+    overflow: hidden;
 }
 
 

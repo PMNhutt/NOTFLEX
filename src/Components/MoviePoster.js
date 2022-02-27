@@ -5,6 +5,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
+import Youtube from 'react-youtube';
 
 function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
     const API_KEY = process.env.REACT_APP_API_KEY;
@@ -23,7 +24,8 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
             type === "movies" ? fetchDateType = movieDetail : fetchDateType = tvDetail
 
             var request = await axios.get(fetchDateType)
-            setTrailerUrl(request.data.videos.results[1])
+            let trailerIndex = request.data.videos.results.findIndex(v => v.type === "Trailer")
+            setTrailerUrl(request.data.videos.results[trailerIndex])
             setMovieDetails(request.data)
             return request;
         }
@@ -69,6 +71,34 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
         }
     }, [genres])
 
+    //trailer
+    const opts = {
+        height: "180",
+        width: "320",
+        playerVars: {
+            // https://developers.google.com/youtube/player_parameters
+            autoplay: 1,
+            controls: 0,
+            mute: 1,
+            modestbranding: 1
+        }
+    };
+
+    const checkReady = (e) => {
+        var res = e.target.playerInfo.playerState
+        if (res === -1) {
+            setTrailerUrl("")
+        }
+    }
+
+    const checkElapsedTime = (e) => {
+        const duration = e.target.getDuration();
+        const currentTime = e.target.getCurrentTime();
+        if (currentTime / duration > 0.9) {
+            setTrailerUrl("")
+        }
+    }
+
     return (
         <div className="movie-posters"
             onMouseEnter={() => handleMouseEnter()}
@@ -77,7 +107,13 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
             <div className={isHover ? "movie-backdrop" : "movie-img"}
                 style={{ backgroundImage: `url(${baseUrl}${isHover ? movie.backdrop_path : movie.poster_path})` }}
             >
-                {(trailerUrl && isHover) && (<iframe width="319" height="180" src={`https://www.youtube.com/embed/${trailerUrl.key}?rel=0&modestbranding=1&autohide=1&mute=1&controls=0&autoplay=1&loop=1?playlist=${trailerUrl.key}`} frameborder="0"></iframe>
+                {(trailerUrl && isHover) && (<Youtube
+                    videoId={`${trailerUrl.key}`}
+                    containerClassName="embed embed-youtube"
+                    onStateChange={(e) => checkElapsedTime(e)}
+                    onReady={(e) => checkReady(e)}
+                    opts={opts}
+                />
                 )}
             </div>
             <div className="poster-info">
