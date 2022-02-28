@@ -23,7 +23,6 @@
     animation-duration: 0.8s;
     transition-delay: 0.8s;
     animation-delay: 0.8s;
-    /* transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55); */
 }
 
 @keyframes goIn {

@@ -6,6 +6,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
 import Youtube from 'react-youtube';
+import { motion } from 'framer-motion';
+
 
 function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
     const API_KEY = process.env.REACT_APP_API_KEY;
@@ -94,7 +96,7 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
     const checkElapsedTime = (e) => {
         const duration = e.target.getDuration();
         const currentTime = e.target.getCurrentTime();
-        if (currentTime / duration > 0.9) {
+        if (currentTime / duration > 0.8) {
             setTrailerUrl("")
         }
     }
@@ -103,8 +105,16 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
         <div className="movie-posters"
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
+
+            // whileHover={{
+            //     width: '21.4vw',
+            //     boxShadow: "0px 0px 10px 0px rgba(255,255,255,0.55)"
+            // }}
+            // transition={{ type: 'spring', duration: 0.8, delay: 0.8 }}
         >
             <div className={isHover ? "movie-backdrop" : "movie-img"}
+                // initial={{ opacity: 0 }}
+                // animate={{ opacity: 1 }}
                 style={{ backgroundImage: `url(${baseUrl}${isHover ? movie.backdrop_path : movie.poster_path})` }}
             >
                 {(trailerUrl && isHover) && (<Youtube
@@ -116,7 +126,8 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
                 />
                 )}
             </div>
-            <div className="poster-info">
+            {isHover && (<div className="poster-info"
+            >
                 <div className="poster-title">
                     {truncate(movie.title || movie.name || movie.original_name, 25)}
                 </div>
@@ -143,7 +154,8 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
 
                     </ul>
                 </div>
-            </div>
+            </div>)}
+
         </div>
 
     )
