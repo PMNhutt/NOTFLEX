@@ -102,21 +102,18 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
     }
 
     return (
-        <div className="movie-posters"
+        <motion.div className="movie-posters"
+            initial={{ opacity: 0, scale: 0}}
+            animate={{ opacity: 1, scale: 1}}
+            exit={{ opacity: 0, scale: 0}}
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
 
-            // whileHover={{
-            //     width: '21.4vw',
-            //     boxShadow: "0px 0px 10px 0px rgba(255,255,255,0.55)"
-            // }}
-            // transition={{ type: 'spring', duration: 0.8, delay: 0.8 }}
         >
             <div className={isHover ? "movie-backdrop" : "movie-img"}
-                // initial={{ opacity: 0 }}
-                // animate={{ opacity: 1 }}
                 style={{ backgroundImage: `url(${baseUrl}${isHover ? movie.backdrop_path : movie.poster_path})` }}
             >
+                {isHover && <div className="movie-trailer-cover"></div>}
                 {(trailerUrl && isHover) && (<Youtube
                     videoId={`${trailerUrl.key}`}
                     containerClassName="embed embed-youtube"
@@ -126,7 +123,9 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
                 />
                 )}
             </div>
-            {isHover && (<div className="poster-info"
+            {isHover && (<motion.div className="poster-info"
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1}}
             >
                 <div className="poster-title">
                     {truncate(movie.title || movie.name || movie.original_name, 25)}
@@ -154,9 +153,9 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
 
                     </ul>
                 </div>
-            </div>)}
+            </motion.div>)}
 
-        </div>
+        </motion.div>
 
     )
 }

@@ -5,7 +5,7 @@ import MoviePoster from './MoviePoster'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import Skeleton from '@mui/material/Skeleton';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
@@ -57,14 +57,15 @@ function Row({ title, fetchUrl, fetchGenres, type }) {
         let distance = listRef.current.getBoundingClientRect().x - 60
         if (direction == "left" && slideNum > 0) {
             setIsMovedRight(false)
+
             if (slideNum == 10) {
-                // listRef.current.style.transform = `translateX(${1140 + distance}px)`
+                listRef.current.style = 'left: -12.3vw'
                 setSlideNum(slideNum - 5)
-                setIndexStart(7)
+                setIndexStart(6)
                 setIndexEnd(15)
             } else {
+                listRef.current.style = 'left: 0vw'
                 setIsMovedLeft(false)
-                // listRef.current.style.transform = `translateX(${1330 + distance}px)`
                 setSlideNum(slideNum - 5)
                 setIndexStart(0)
                 setIndexEnd(8)
@@ -73,60 +74,74 @@ function Row({ title, fetchUrl, fetchGenres, type }) {
         if (direction == "right" && slideNum < 10) {
             setIsMovedLeft(true)
             if (slideNum < 5) {
-                // listRef.current.style.transform = `translateX(${-1330 + distance}px)`
+                listRef.current.style = 'left: -12.3vw'
                 setSlideNum(slideNum + 5)
-                setIndexStart(7)
+                setIndexStart(6)
                 setIndexEnd(15)
             } else {
                 setIsMovedRight(true)
-                // listRef.current.style.transform = `translateX(${-1140 + distance}px)`
                 setSlideNum(slideNum + 5)
-                setIndexStart(14)
+                setIndexStart(13)
                 setIndexEnd(20)
             }
         }
     }
+
+    //handle mousemove
+    const [isHover, setIsHover] = useState(false)
 
 
     return (
         <motion.div className="row"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
         >
 
             <motion.h2 className="row_title"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, x: -400 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
             >{title}</motion.h2>
 
-            <ArrowBackIosNewOutlinedIcon
+            <div className="slider left-layer"
+                onClick={() => handleClick("left")}
+                style={{ display: !isMovedLeft && "none" }}
+            ></div>
+            {isHover && <ArrowBackIosNewOutlinedIcon
                 sx={{ fontSize: '3.5vw' }}
                 className="slider left"
                 onClick={() => handleClick("left")}
                 style={{ display: !isMovedLeft && "none" }}
-            />
+            />}
 
-            <div className="row_posters" ref={listRef}
-            >
+            <div className="row_posters" ref={listRef}>
 
-                {!movies.loading ? (movies.data.map(movie => (
-                    <React.Fragment key={movie.id}>
-                        <MoviePoster baseUrl={baseUrl} movie={movie} genres={genre} movieId={movie.id} type={type} />
-                    </React.Fragment>
-                ))) : [1, 2, 3, 4, 5, 6].map((n) => (
-                    <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rectangular" animation="wave" width={180} height={270} key={n} />
-                ))}
+                <AnimatePresence>
+                    {!movies.loading ? (movies.data.map(movie => (
+                        <React.Fragment key={movie.id}>
+                            <MoviePoster key={movie.id} baseUrl={baseUrl} movie={movie} genres={genre} movieId={movie.id} type={type} />
+                        </React.Fragment>
+                    ))) : [1, 2, 3, 4, 5, 6].map((n) => (
+                        <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rectangular" animation="wave" width={180} height={270} key={n} />
+                    ))}
+
+                </AnimatePresence>
             </div>
+
             <div className="slider right-layer"
                 onClick={() => handleClick("right")}
                 style={{ display: IsMovedRight && "none" }}
             ></div>
-            <ArrowForwardIosOutlinedIcon
-                sx={{ fontSize: '3.5vw' }}
-                className="slider right"
-                onClick={() => handleClick("right")}
-                style={{ display: IsMovedRight && "none" }}
-            />
+            {isHover &&
+                <ArrowForwardIosOutlinedIcon
+                    sx={{ fontSize: '3.5vw' }}
+                    className="slider right"
+                    onClick={() => handleClick("right")}
+                    style={{ display: IsMovedRight && "none" }}
+                />
+            }
         </motion.div>
     )
 }

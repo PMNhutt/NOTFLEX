@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { motion} from 'framer-motion';
 
 function Navbar() {
   const [scroll, setScroll] = useState(false);
@@ -26,7 +27,10 @@ function Navbar() {
 
 
   return (
-    <div className={`${scroll ? "navbar_black" : "navbar"}`}>
+    <motion.div className={`${scroll ? "navbar_black" : "navbar"}`}
+      initial = {{y: -200}}
+      animate = {{y : 0}}
+    >
 
       <ul className="navbar-left">
         <li style={{lineHeight: 0}}><Link to="/"><img className="navbar-logo" src="https://fontmeme.com/permalink/220212/2b79b3189fcc6673d3153dee728478eb.png" alt="netflix-font" border="0" /></Link></li>
@@ -41,7 +45,7 @@ function Navbar() {
         <Link to="/"><img className="navbar-acc" src={logo} alt="account_logo" border="0" /></Link>
         <ArrowDropDownIcon sx={{cursor: 'pointer'}}/>
       </div>
-    </div>
+    </motion.div>
 
 
   )
