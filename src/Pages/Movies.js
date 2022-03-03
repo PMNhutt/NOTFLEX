@@ -3,7 +3,7 @@ import Row from '../Components/Row'
 import requests from '../request'
 import Banner from '../Components/Banner'
 import AnimatedPage from '../Components/AnimatedPage'
-
+import Categories from '../Components/Categories'
 
 
 function Movies({ title }) {
@@ -17,13 +17,10 @@ function Movies({ title }) {
       <div>
         <Banner
           fetchBannerData={requests.fetchActionMovies}
-          fetchCategories={requests.fetchMoviesGenres}
           type="movies"
         />
-        <Row
-          title="Top Rated Movies"
-          fetchUrl={requests.fetchTopRated}
-          fetchGenres={requests.fetchMoviesGenres}
+        <Categories
+          fetchCategories={requests.fetchMoviesGenres}
           type="movies"
         />
         <Row

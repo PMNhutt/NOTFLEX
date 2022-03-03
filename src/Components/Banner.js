@@ -1,24 +1,44 @@
-import React, { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, useContext } from 'react';
 import axios from '../axios';
 import '../Component CSS/Banner.css'
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { motion } from 'framer-motion';
 import Youtube from 'react-youtube';
+import { GenreContext } from '../Context/GenreContext'
 
 
-function Banner({ fetchBannerData, type, fetchCategories }) {
+function Banner({ fetchBannerData, type }) {
     const baseUrl = process.env.REACT_APP_BASE_URL_LARGE;
     const API_KEY = process.env.REACT_APP_API_KEY
     const [trailerUrl, setTrailerUrl] = useState()
 
     const [movie, setMovie] = useState([]);
-    const [categories, setCategories] = useState([]);
+
+    const genreIds = useContext(GenreContext)
 
     //get movies
     useEffect(() => {
         async function fetchData() {
-            const request = await axios.get(fetchBannerData)
+
+            //handle filter genre--> take data from banner
+            var url
+            if (type === "movies" || type === undefined) {
+                if (fetchBannerData.includes("%2C")) {
+                    url = fetchBannerData.replace(`%2C${genreIds.selectedMovieGenre}`, "")
+                } else {
+                    url = fetchBannerData.concat(`%2C${genreIds.selectedMovieGenre}`)
+                }
+            } else {
+                if (fetchBannerData.includes("%2C")) {
+                    url = fetchBannerData.replace(`%2C${genreIds.selectedGenre}`, "")
+                } else {
+                    url = fetchBannerData.concat(`%2C${genreIds.selectedGenre}`)
+                }
+
+            }
+
+            const request = await axios.get(url)
             //set random api movie to banner
             setMovie(request.data.results[
                 Math.floor(Math.random() * (request.data.results.length - 1))
@@ -26,7 +46,7 @@ function Banner({ fetchBannerData, type, fetchCategories }) {
             return request;
         }
         fetchData();
-    }, [fetchBannerData]);
+    }, [fetchBannerData, genreIds.selectedGenre, genreIds.selectedMovieGenre]);
 
     //get trailerUrl
     useEffect(() => {
@@ -44,16 +64,6 @@ function Banner({ fetchBannerData, type, fetchCategories }) {
         }
         fetchData();
     }, [movie.id])
-
-    //get genres list
-    useEffect(() => {
-        async function fetchData() {
-            const requestCate = await axios.get(fetchCategories)
-            setCategories(requestCate.data.genres)
-            return requestCate;
-        }
-        fetchData();
-    }, [fetchCategories])
 
     function truncate(str, n) {
         return str?.length > n ? str.substr(0, n - 1) + " ..." : str;
@@ -82,10 +92,11 @@ function Banner({ fetchBannerData, type, fetchCategories }) {
     const checkElapsedTime = (e) => {
         const duration = e.target.getDuration();
         const currentTime = e.target.getCurrentTime();
-        if (currentTime / duration > 0.8) {
+        if (currentTime / duration >= 0.7) {
             setTrailerUrl("")
         }
     }
+
 
     return (
 
@@ -108,21 +119,6 @@ function Banner({ fetchBannerData, type, fetchCategories }) {
             <div className="banner_left_cover"></div>
             <div className="banner_right_cover"></div>
             <div className="banner_bottom_cover"></div>
-
-            {type && (
-                <motion.div className="banner_categories"
-                    initial={{ y: -500 }}
-                    animate={{ y: 0 }}
-                >
-                    <span>{type === "tvShows" ? "TV Shows" : "Movies"}</span>
-                    <select name="genres" id="genres">
-                        <option style={{ display: "none" }}>Genres</option>
-                        {categories && categories.map(category => (
-                            <option key={category.id} value={category.name}>{category.name}</option>
-                        ))}
-                    </select>
-                </motion.div>
-            )}
 
             <motion.div className="banner_content"
                 initial={{ opacity: 0, x: -800 }}

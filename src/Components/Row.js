@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, useRef } from 'react';
+import React, { useState, useEffect, memo, useRef, useContext } from 'react';
 import axios from '../axios';
 import '../Component CSS/Row.css';
 import MoviePoster from './MoviePoster'
@@ -6,6 +6,8 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import Skeleton from '@mui/material/Skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GenreContext } from '../Context/GenreContext'
+
 
 
 const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
@@ -24,11 +26,33 @@ function Row({ title, fetchUrl, fetchGenres, type }) {
     const [slideNum, setSlideNum] = useState(0)
     const [genre, setGenres] = useState([])
 
+
+    //handle filter genre--> take data from banner
+    const genreIds = useContext(GenreContext)
+
     //load movies when Row render
     // 0,8   7, 15    14, 20
     useEffect(() => {
         async function fetchData() {
-            const request = await axios.get(fetchUrl)
+            
+            //handle filter genre--> take data from banner
+            var url
+            if (type === "movies" || type === undefined) {
+                if (fetchUrl.includes("%2C")) {
+                    url = fetchUrl.replace(`%2C${genreIds.selectedMovieGenre}`, "")
+                } else {
+                    url = fetchUrl.concat(`%2C${genreIds.selectedMovieGenre}`)
+                }
+            } else {
+                if (fetchUrl.includes("%2C")) {
+                    url = fetchUrl.replace(`%2C${genreIds.selectedGenre}`, "")
+                } else {
+                    url = fetchUrl.concat(`%2C${genreIds.selectedGenre}`)
+                }
+
+            }
+
+            const request = await axios.get(url)
             // setMovies(request.data.results)
             setMovies({
                 loading: false,
@@ -37,7 +61,7 @@ function Row({ title, fetchUrl, fetchGenres, type }) {
             return request;
         }
         fetchData();
-    }, [fetchUrl, indexStart]);
+    }, [fetchUrl, indexStart, genreIds.selectedGenre, genreIds.selectedMovieGenre]);
 
 
     //get genre list
@@ -89,6 +113,7 @@ function Row({ title, fetchUrl, fetchGenres, type }) {
 
     //handle mousemove
     const [isHover, setIsHover] = useState(false)
+
 
 
     return (

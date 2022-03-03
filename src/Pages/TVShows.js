@@ -3,7 +3,7 @@ import Row from '../Components/Row'
 import requests from '../request'
 import Banner from '../Components/Banner'
 import AnimatedPage from '../Components/AnimatedPage'
-
+import Categories from '../Components/Categories'
 
 function TVShows({ title }) {
 
@@ -11,17 +11,21 @@ function TVShows({ title }) {
     document.title = title
   })
 
+
   return (
     <AnimatedPage>
       <div>
         <Banner
-          fetchBannerData={requests.fetchTVAnimation}
+          fetchBannerData={requests.fetchTVMystery}
+          type="tvShows"
+        />
+        <Categories
           fetchCategories={requests.fetchTVShowGenres}
           type="tvShows"
         />
         <Row
-          title="TV Shows Original"
-          fetchUrl={requests.fetchNetflixOriginals}
+          title="TV Shows Mystery"
+          fetchUrl={requests.fetchTVMystery}
           fetchGenres={requests.fetchTVShowGenres}
           type="tvShows"
         />
