@@ -93,7 +93,7 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal }) {
     //trailer
     const opts = {
         height: "180",
-        width: "320",
+        width: "100%",
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
             autoplay: 1,

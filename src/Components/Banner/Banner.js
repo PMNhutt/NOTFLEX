@@ -89,7 +89,7 @@ function Banner({ fetchBannerData, type, setShowModal }) {
     //trailer
     const opts = {
         height: "822",
-        width: "1480",
+        width: "100%",
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
             autoplay: 1,
