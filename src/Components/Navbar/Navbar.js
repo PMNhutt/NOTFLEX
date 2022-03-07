@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../logo/netflix_acc.png';
-import '../Component CSS/Navbar.css';
+import logo from '../../logo/netflix_acc.png';
+import './Navbar.css';
 import { Link, NavLink } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';

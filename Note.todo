@@ -22,7 +22,20 @@
 ✔ fetch /movie/{movie_id}/videos @done (2/26/2022, 11:17:22 PM)
 
 @Funtions
-☐ update page animate?
 ✔ add banner video trailer @done (3/2/2022, 10:25:23 AM)
 ✔ add genre filter @done (3/3/2022, 3:32:08 PM)
 ☐ add search feature
+✔ add information modal @done (3/7/2022, 8:42:37 PM)
+
+
+@fix bug
+☐ click outside to close modal if clicked right to that row => cant see arrow to move page
+☐ index 5 row need to expand to the right 
+
+
+@update
+☐ update page animate?
+☐ change state to object
+☐ pause banner trailer when play card trailer
+☐ pause banner trailer when change browser tab
+☐ add show more to tv show modal

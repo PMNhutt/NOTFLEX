@@ -1,18 +1,17 @@
 import React, { useState, useEffect, memo, useRef, useContext } from 'react';
-import axios from '../axios';
-import '../Component CSS/Row.css';
-import MoviePoster from './MoviePoster'
+import axios from '../../axios';
+import './Row.css';
+import MoviePoster from '../MoviePoster/MoviePoster'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import Skeleton from '@mui/material/Skeleton';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GenreContext } from '../Context/GenreContext'
-
+import { GenreContext } from '../../Context/GenreContext'
 
 
 const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
 
-function Row({ title, fetchUrl, fetchGenres, type }) {
+function Row({ title, fetchUrl, fetchGenres, type, setShowModal }) {
     const [movies, setMovies] = useState({
         loading: true,
         data: [],
@@ -30,11 +29,12 @@ function Row({ title, fetchUrl, fetchGenres, type }) {
     //handle filter genre--> take data from banner
     const genreIds = useContext(GenreContext)
 
+
     //load movies when Row render
     // 0,8   7, 15    14, 20
     useEffect(() => {
         async function fetchData() {
-            
+
             //handle filter genre--> take data from banner
             var url
             if (type === "movies" || type === undefined) {
@@ -146,7 +146,7 @@ function Row({ title, fetchUrl, fetchGenres, type }) {
                 <AnimatePresence>
                     {!movies.loading ? (movies.data.map(movie => (
                         <React.Fragment key={movie.id}>
-                            <MoviePoster key={movie.id} baseUrl={baseUrl} movie={movie} genres={genre} movieId={movie.id} type={type} />
+                            <MoviePoster setShowModal={setShowModal} key={movie.id} baseUrl={baseUrl} movie={movie} genres={genre} movieId={movie.id} type={type} />
                         </React.Fragment>
                     ))) : [1, 2, 3, 4, 5, 6].map((n) => (
                         <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rectangular" animation="wave" width={180} height={270} key={n} />

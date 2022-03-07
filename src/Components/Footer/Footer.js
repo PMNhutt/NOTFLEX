@@ -1,5 +1,5 @@
 import {memo} from 'react'
-import '../Component CSS/Footer.css'
+import './Footer.css'
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';

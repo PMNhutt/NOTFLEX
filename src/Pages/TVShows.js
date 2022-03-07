@@ -1,55 +1,71 @@
 import React, { useEffect } from 'react'
-import Row from '../Components/Row'
+import Row from '../Components/Row/Row'
 import requests from '../request'
-import Banner from '../Components/Banner'
-import AnimatedPage from '../Components/AnimatedPage'
-import Categories from '../Components/Categories'
+import Banner from '../Components/Banner/Banner'
+import Categories from '../Components/Category/Categories'
+import { motion } from 'framer-motion'
 
-function TVShows({ title }) {
+function TVShows({ title, setShowModal }) {
 
   useEffect(() => {
     document.title = title
   })
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    }
+  }
 
   return (
-    <AnimatedPage>
-      <div>
-        <Banner
-          fetchBannerData={requests.fetchTVMystery}
-          type="tvShows"
-        />
-        <Categories
-          fetchCategories={requests.fetchTVShowGenres}
-          type="tvShows"
-        />
-        <Row
-          title="TV Shows Mystery"
-          fetchUrl={requests.fetchTVMystery}
-          fetchGenres={requests.fetchTVShowGenres}
-          type="tvShows"
-        />
-        <Row
-          title="TV Shows Action"
-          fetchUrl={requests.fetchTVAction}
-          fetchGenres={requests.fetchTVShowGenres}
-          type="tvShows"
-        />
-        <Row
-          title="TV Shows Animation"
-          fetchUrl={requests.fetchTVAnimation}
-          fetchGenres={requests.fetchTVShowGenres}
-          type="tvShows"
-        />
-        <Row
-          title="TV Shows Comedy"
-          fetchUrl={requests.fetchTVComedy}
-          fetchGenres={requests.fetchTVShowGenres}
-          type="tvShows"
-        />
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+    >
+      <Banner
+        fetchBannerData={requests.fetchTVMystery}
+        setShowModal={setShowModal}
+        type="tvShows"
+      />
+      <Categories
+        fetchCategories={requests.fetchTVShowGenres}
+        type="tvShows"
+      />
+      <Row
+        title="TV Shows Mystery"
+        fetchUrl={requests.fetchTVMystery}
+        fetchGenres={requests.fetchTVShowGenres}
+        setShowModal={setShowModal}
+        type="tvShows"
+      />
+      <Row
+        title="TV Shows Action"
+        fetchUrl={requests.fetchTVAction}
+        fetchGenres={requests.fetchTVShowGenres}
+        setShowModal={setShowModal}
+        type="tvShows"
+      />
+      <Row
+        title="TV Shows Animation"
+        fetchUrl={requests.fetchTVAnimation}
+        fetchGenres={requests.fetchTVShowGenres}
+        setShowModal={setShowModal}
+        type="tvShows"
+      />
+      <Row
+        title="TV Shows Comedy"
+        fetchUrl={requests.fetchTVComedy}
+        fetchGenres={requests.fetchTVShowGenres}
+        setShowModal={setShowModal}
+        type="tvShows"
+      />
 
-      </div>
-    </AnimatedPage>
+    </motion.div>
   )
 }
 

@@ -1,21 +1,35 @@
-import { useState, useEffect, useRef } from 'react'
-import '../Component CSS/MoviePoster.css'
-import axios from '../axios';
+import { useState, useEffect, useRef, useContext } from 'react'
+import './MoviePoster.css'
+import axios from '../../axios';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
 import Youtube from 'react-youtube';
 import { motion } from 'framer-motion';
+import { ModalContext } from '../../Context/ModalContext'
 
 
-function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
+function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal }) {
     const API_KEY = process.env.REACT_APP_API_KEY;
     const [isHover, setIsHover] = useState(false)
     const [delayHandler, setDelayHandler] = useState()
     const [movieDetails, setMovieDetails] = useState([])
     const [trailerUrl, setTrailerUrl] = useState()
 
+    //get modal movie id
+    const bannerMId = useContext(ModalContext)
+
+    //get type for modal
+    useEffect(() => {
+        bannerMId.setType(type)
+    }, [type])
+
+    //handle modal
+    function handleModalOpen(id){
+        setShowModal(true)
+        bannerMId.setBannerM(id)
+    }
 
     //movie details
     useEffect(() => {
@@ -29,6 +43,9 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
             let trailerIndex = request.data.videos.results.findIndex(v => v.type === "Trailer")
             setTrailerUrl(request.data.videos.results[trailerIndex])
             setMovieDetails(request.data)
+
+            //set movieID for modal from banner
+            // bannerMId.setBannerM(movieId)
             return request;
         }
         fetchData();
@@ -136,7 +153,7 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type }) {
                     <RecommendOutlinedIcon className="poster-icon" />
                     <RecommendOutlinedIcon sx={{ transform: 'scale(-1, -1)' }} className="poster-icon" />
 
-                    <ArrowDropDownCircleOutlinedIcon className="poster-icon" sx={{ transform: 'translateX(100%)' }} />
+                    <ArrowDropDownCircleOutlinedIcon className="poster-icon" sx={{ transform: 'translateX(100%)' }} onClick={() => handleModalOpen(movieId)} />
                 </div>
                 <div className="poster-info-top">
                     <span className="poster-vote">{movie.vote_average} Rate</span>

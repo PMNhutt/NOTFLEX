@@ -1,18 +1,54 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState, useContext } from 'react'
+import { useLocation } from "react-router"
 import Home from '../Pages/Home';
 import TVShows from '../Pages/TVShows';
 import Movies from '../Pages/Movies';
 import ScrollToTop from '../Components/ScrollToTop'
+import Modal from './Modal/Modal'
+import { AnimatePresence } from 'framer-motion'
+import { ModalContext } from '../Context/ModalContext'
 
 function Main() {
+  const location = useLocation()
+
+  const modal = useContext(ModalContext)
+
+  // const [showModal, setShowModal] = useState(false)
+
   return (
-      <ScrollToTop>
-        <Routes>
-          <Route path="/" element={<Home title="Home - Notflex" />} />
-          <Route path="/tvshows" element={<TVShows title="TVShows - Notflex" />} />
-          <Route path="/movies" element={<Movies title="Movies - Notflex" />} />
+    <ScrollToTop>
+      <Modal showModal={modal.showModal} setShowModal={modal.setShowModal} />
+      <AnimatePresence exitBeforeEnter onExitComplete={() => modal.setShowModal(false)}>
+        <Routes location={location} key={location.key}>
+          <Route path="/" element={
+            <Home
+              title="Home - Notflex"
+              setShowModal={modal.setShowModal}
+              showModal={modal.showModal}
+            />
+          }
+          />
+          <Route path="/tvshows" element={
+            <TVShows
+              title="TVShows - Notflex"
+              setShowModal={modal.setShowModal}
+              showModal={modal.showModal}
+            />
+          }
+          />
+          <Route path="/movies" element={
+            <Movies
+              title="Movies - Notflex"
+              setShowModal={modal.setShowModal}
+              showModal={modal.showModal}
+            />
+          }
+          />
         </Routes>
-      </ScrollToTop>
+      </AnimatePresence>
+
+    </ScrollToTop>
   )
 }
 

@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
-import axios from '../axios';
-import '../Component CSS/Categories.css'
+import axios from '../../axios';
+import './Categories.css'
 import { motion } from 'framer-motion';
-import { GenreContext } from '../Context/GenreContext'
+import { GenreContext } from '../../Context/GenreContext'
 
 
 function Categories({ type, fetchCategories }) {
@@ -68,7 +68,9 @@ function Categories({ type, fetchCategories }) {
                 >
                     {/* TV Shows */}
                     {type === "tvShows" && (genreSelect.cateBannerChange === false
-                        ? <span>TV Shows</span>
+                        ? <span>
+                            TV Shows
+                        </span>
                         : <motion.span className="selected_category"
                             onClick={() => handleCategorySelected()}
                             initial={{ y: -500 }}
@@ -76,6 +78,7 @@ function Categories({ type, fetchCategories }) {
                         >
                             TV Shows
                         </motion.span>)}
+
 
                     {type === "tvShows" && (genreSelect.cateBannerChange === false
                         ? <select name="genres" id="genres" value={genreIds.selectedGenre} onChange={handleGenreChange}>
@@ -93,7 +96,9 @@ function Categories({ type, fetchCategories }) {
 
                     {/* Movies */}
                     {type === "movies" && (genreSelect.cateBannerMoviesChange === false
-                        ? <span>Movies</span>
+                        ? <span>
+                            Movies
+                        </span>
                         : <motion.span className="selected_category"
                             onClick={() => handleCategoryMovieSelected()}
                             initial={{ y: -500 }}
@@ -115,7 +120,6 @@ function Categories({ type, fetchCategories }) {
                         >
                             {genreSelect.cateMoviesName}
                         </motion.span>)}
-
                 </motion.div>
             )}
         </div>

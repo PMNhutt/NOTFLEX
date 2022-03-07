@@ -1,14 +1,14 @@
 import { useState, useEffect, memo, useContext } from 'react';
-import axios from '../axios';
-import '../Component CSS/Banner.css'
+import axios from '../../axios';
+import './Banner.css'
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { motion } from 'framer-motion';
 import Youtube from 'react-youtube';
-import { GenreContext } from '../Context/GenreContext'
+import { GenreContext } from '../../Context/GenreContext'
+import { ModalContext } from '../../Context/ModalContext'
 
-
-function Banner({ fetchBannerData, type }) {
+function Banner({ fetchBannerData, type, setShowModal }) {
     const baseUrl = process.env.REACT_APP_BASE_URL_LARGE;
     const API_KEY = process.env.REACT_APP_API_KEY
     const [trailerUrl, setTrailerUrl] = useState()
@@ -16,6 +16,20 @@ function Banner({ fetchBannerData, type }) {
     const [movie, setMovie] = useState([]);
 
     const genreIds = useContext(GenreContext)
+
+    //get modal movie id
+    const bannerMId = useContext(ModalContext)
+
+    //get type for modal
+    useEffect(() => {
+        bannerMId.setType(type)
+    }, [type])
+
+    //handle modal
+    function handleModalOpen(id){
+        setShowModal(true)
+        bannerMId.setBannerM(id)
+    }
 
     //get movies
     useEffect(() => {
@@ -60,6 +74,9 @@ function Banner({ fetchBannerData, type }) {
             var request = await axios.get(fetchDateType)
             let trailerIndex = request.data.videos.results.findIndex(v => v.type === "Trailer")
             setTrailerUrl(request.data.videos.results[trailerIndex])
+
+            //set movieID for modal from banner
+            // bannerMId.setBannerM(movie.id)
             return request;
         }
         fetchData();
@@ -139,7 +156,7 @@ function Banner({ fetchBannerData, type }) {
                         <PlayArrowRoundedIcon sx={{ marginRight: '10px', fontSize: '1.8em' }} />
                         <span>Play</span>
                     </button>
-                    <button className="banner_btn info_btn">
+                    <button className="banner_btn info_btn" onClick={() => handleModalOpen(movie.id)}>
                         <InfoOutlinedIcon sx={{ marginRight: '10px', fontSize: '1.5em' }} />
                         <span>More Info</span>
                     </button>
