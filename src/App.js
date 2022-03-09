@@ -9,7 +9,7 @@ function App() {
   const modal = useContext(ModalContext)
 
   useEffect(() => {
-    modal.showModal === true ? document.body.style.overflow = "hidden" : document.body.style.overflow = "auto"
+    modal.showModal === true ? document.body.style.overflow = "hidden hidden" : document.body.style.overflow = "hidden auto"
   }, [modal.showModal])
 
   return (

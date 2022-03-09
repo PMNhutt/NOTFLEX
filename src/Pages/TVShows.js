@@ -28,7 +28,7 @@ function TVShows({ title, setShowModal }) {
       exit="hidden"
     >
       <Banner
-        fetchBannerData={requests.fetchTVMystery}
+        fetchBannerData={requests.fetchTVAction}
         setShowModal={setShowModal}
         type="tvShows"
       />

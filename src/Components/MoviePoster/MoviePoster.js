@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import { ModalContext } from '../../Context/ModalContext'
 
 
-function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal }) {
+function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal, index }) {
     const API_KEY = process.env.REACT_APP_API_KEY;
     const [isHover, setIsHover] = useState(false)
     const [delayHandler, setDelayHandler] = useState()
@@ -26,7 +26,7 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal }) {
     }, [type])
 
     //handle modal
-    function handleModalOpen(id){
+    function handleModalOpen(id) {
         setShowModal(true)
         bannerMId.setBannerM(id)
     }
@@ -118,62 +118,82 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal }) {
         }
     }
 
+    function handleScale(index) {
+        switch (index) {
+            case 1:
+                return -90
+            case 2:
+                return -70
+            case 3:
+                return -65
+            case 4:
+                return -70
+            case 5:
+                return -90
+            case 6:
+                return -160
+            default:
+                return 0
+        }
+    }
+
     return (
-        <motion.div className="movie-posters"
-            initial={{ opacity: 0, scale: 0}}
-            animate={{ opacity: 1, scale: 1}}
-            exit={{ opacity: 0, scale: 0}}
-            onMouseEnter={() => handleMouseEnter()}
-            onMouseLeave={() => handleMouseLeave()}
-
-        >
-            <div className={isHover ? "movie-backdrop" : "movie-img"}
-                style={{ backgroundImage: `url(${baseUrl}${isHover ? movie.backdrop_path : movie.poster_path})` }}
+        <div className="movieposter-wrapper">
+            <motion.div className="movie-posters"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onMouseEnter={() => handleMouseEnter()}
+                onMouseLeave={() => handleMouseLeave()}
+                style={{left: isHover && handleScale(index)}}
             >
-                {isHover && <div className="movie-trailer-cover"></div>}
-                {(trailerUrl && isHover) && (<Youtube
-                    videoId={`${trailerUrl.key}`}
-                    containerClassName="embed embed-youtube"
-                    onStateChange={(e) => checkElapsedTime(e)}
-                    onReady={(e) => checkReady(e)}
-                    opts={opts}
-                />
-                )}
-            </div>
-            {isHover && (<motion.div className="poster-info"
-                initial={{ opacity: 0}}
-                animate={{ opacity: 1}}
-            >
-                <div className="poster-title">
-                    {truncate(movie.title || movie.name || movie.original_name, 25)}
+                <div className={isHover ? "movie-backdrop" : "movie-img"}
+                    style={{ backgroundImage: `url(${baseUrl}${isHover ? movie.backdrop_path : movie.poster_path})` }}
+                >
+                    {isHover && <div className="movie-trailer-cover"></div>}
+                    {(trailerUrl && isHover) && (<Youtube
+                        videoId={`${trailerUrl.key}`}
+                        containerClassName="embed embed-youtube"
+                        onStateChange={(e) => checkElapsedTime(e)}
+                        onReady={(e) => checkReady(e)}
+                        opts={opts}
+                    />
+                    )}
                 </div>
-                <div className="poster-icons">
-                    <PlayCircleIcon className="poster-icon" />
-                    <AddCircleOutlineIcon className="poster-icon" />
-                    <RecommendOutlinedIcon className="poster-icon" />
-                    <RecommendOutlinedIcon sx={{ transform: 'scale(-1, -1)' }} className="poster-icon" />
+                {isHover && (<motion.div className="poster-info"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <div className="poster-title">
+                        {truncate(movie.title || movie.name || movie.original_name, 25)}
+                    </div>
+                    <div className="poster-icons">
+                        <PlayCircleIcon className="poster-icon" />
+                        <AddCircleOutlineIcon className="poster-icon" />
+                        <RecommendOutlinedIcon className="poster-icon" />
+                        <RecommendOutlinedIcon sx={{ transform: 'scale(-1, -1)' }} className="poster-icon" />
 
-                    <ArrowDropDownCircleOutlinedIcon className="poster-icon" sx={{ transform: 'translateX(100%)' }} onClick={() => handleModalOpen(movieId)} />
-                </div>
-                <div className="poster-info-top">
-                    <span className="poster-vote">{movie.vote_average} Rate</span>
-                    <span className="poster-season">{type === "tvShows" ?
-                        (countSeason(movieDetails.number_of_seasons))
-                        : (countRuntime(movieDetails.runtime))}</span>
-                </div>
+                        <ArrowDropDownCircleOutlinedIcon className="poster-icon" sx={{ transform: 'translateX(100%)' }} onClick={() => handleModalOpen(movieId)} />
+                    </div>
+                    <div className="poster-info-top">
+                        <span className="poster-vote">{movie.vote_average} Rate</span>
+                        <span className="poster-season">{type === "tvShows" ?
+                            (countSeason(movieDetails.number_of_seasons))
+                            : (countRuntime(movieDetails.runtime))}</span>
+                    </div>
 
-                <div className="poster-genres">
-                    <ul>
-                        {(objectGenres.current).map(genre => (
-                            <li key={genre.id}>{genre.name}</li>
-                        ))}
+                    <div className="poster-genres">
+                        <ul>
+                            {(objectGenres.current).map(genre => (
+                                <li key={genre.id}>{genre.name}</li>
+                            ))}
 
-                    </ul>
-                </div>
-            </motion.div>)}
+                        </ul>
+                    </div>
+                </motion.div>)}
 
-        </motion.div>
-
+            </motion.div>
+        </div>
     )
 }
 

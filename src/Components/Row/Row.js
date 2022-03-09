@@ -83,12 +83,12 @@ function Row({ title, fetchUrl, fetchGenres, type, setShowModal }) {
             setIsMovedRight(false)
 
             if (slideNum == 10) {
-                listRef.current.style = 'left: -12.3vw'
+                // listRef.current.style = 'left: -12.3vw'
                 setSlideNum(slideNum - 5)
-                setIndexStart(6)
+                setIndexStart(7)
                 setIndexEnd(15)
             } else {
-                listRef.current.style = 'left: 0vw'
+                // listRef.current.style = 'left: 0vw'
                 setIsMovedLeft(false)
                 setSlideNum(slideNum - 5)
                 setIndexStart(0)
@@ -98,14 +98,14 @@ function Row({ title, fetchUrl, fetchGenres, type, setShowModal }) {
         if (direction == "right" && slideNum < 10) {
             setIsMovedLeft(true)
             if (slideNum < 5) {
-                listRef.current.style = 'left: -12.3vw'
+                // listRef.current.style = 'left: -12.3vw'
                 setSlideNum(slideNum + 5)
-                setIndexStart(6)
+                setIndexStart(7)
                 setIndexEnd(15)
             } else {
                 setIsMovedRight(true)
                 setSlideNum(slideNum + 5)
-                setIndexStart(13)
+                setIndexStart(14)
                 setIndexEnd(20)
             }
         }
@@ -144,9 +144,12 @@ function Row({ title, fetchUrl, fetchGenres, type, setShowModal }) {
             <div className="row_posters" ref={listRef}>
 
                 <AnimatePresence>
-                    {!movies.loading ? (movies.data.map(movie => (
+                    {!movies.loading ? (movies.data.map((movie, index) => (
                         <React.Fragment key={movie.id}>
-                            <MoviePoster setShowModal={setShowModal} key={movie.id} baseUrl={baseUrl} movie={movie} genres={genre} movieId={movie.id} type={type} />
+                            <MoviePoster setShowModal={setShowModal} index={index}
+                                key={movie.id} baseUrl={baseUrl} movie={movie}
+                                genres={genre} movieId={movie.id} type={type}
+                            />
                         </React.Fragment>
                     ))) : [1, 2, 3, 4, 5, 6].map((n) => (
                         <Skeleton sx={{ bgcolor: 'grey.900' }} variant="rectangular" animation="wave" width={180} height={270} key={n} />

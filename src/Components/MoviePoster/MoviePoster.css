@@ -1,26 +1,35 @@
+.movieposter-wrapper {
+    position: relative;
+    width: 12vw;
+
+}
+
 .movie-posters {
+    /* transform: scale(1); */
     width: 12vw;
     height: 18vw;
     user-select: none;
     cursor: pointer;
     border-radius:  4px;
-    -o-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    /* -o-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
     -ms-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
     -webkit-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
-    -moz-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
-    transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    -moz-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55); */
+    transition: transform 0.5s cubic-bezier(0.81, 0.01, 0.27, 1.55);
 }
 
 .movie-posters:hover{
-    width: 21.4vw;
+    position: absolute;
+    top: -0vw;
+    left: 0;
+    z-index: 50;
+    transform: scale(1.11);
+    /* width: 21.4vw; */
     background: #141414;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55); 
-    box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55);
-    transform: translateX(1%);
-    margin-left: 4px;
-    margin-right: 4px;
+    /* -webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55); 
+    box-shadow: 0px 0px 10px 0px rgba(255,255,255,0.55); */
     animation-name: goIn;
-    animation-duration: 0.8s;
+    animation-duration: 0.5s;
     transition-delay: 0.8s;
     animation-delay: 0.8s;
 }
@@ -47,6 +56,7 @@
     animation: changeOpacity 0.8s;
 }
 
+
 @keyframes changeOpacity {
     0% {
         opacity: 1;
@@ -62,14 +72,17 @@
     height: 100%;
     background-size: cover;
     border-radius: 4px;
-    -o-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    /* -o-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
     -ms-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
     -webkit-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
     -moz-transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
-    transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55);
+    transition: all 0.8s cubic-bezier(0.81, 0.01, 0.27, 1.55); */
 }
 
 .movie-backdrop {
+    -webkit-box-shadow: 0px 0px 18px 7px rgba(0,0,0,0.6); 
+    box-shadow: 0px 0px 18px 7px rgba(0,0,0,0.6);
+    width: 21.4vw;
     height: 12vw;
     background-size: cover;
     border-top-right-radius: 4px;
@@ -85,6 +98,8 @@
 }
 
 .poster-info {
+    -webkit-box-shadow: 3px 18px 14px 0px rgba(0,0,0,0.6); 
+    box-shadow: 3px 18px 14px 0px rgba(0,0,0,0.6);
     position: absolute;
     opacity: 0;
     top: 10vw;
@@ -92,11 +107,11 @@
     width: 20.4vw;
     background: rgb(20,20,20);
     background: linear-gradient(0deg, rgba(20,20,20,1) 59%, rgba(20,20,20,0.9721638655462185) 67%, rgba(20,20,20,0.5519957983193278) 82%, rgba(20,20,20,0.2774859943977591) 89%, rgba(20,20,20,0.15423669467787116) 94%, rgba(20,20,20,0) 100%);
-    -o-transition: all 0.8s ease;
+    /* -o-transition: all 0.8s ease;
     -ms-transition: all 0.8s ease;
     -webkit-transition: all 0.8s ease;
     -moz-transition: all 0.8s ease;
-    transition: all 0.8s ease;
+    transition: all 0.8s ease; */
 }
 
 .poster-title {

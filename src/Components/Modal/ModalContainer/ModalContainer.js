@@ -52,8 +52,8 @@ function ModalContainer({ setShowModal }) {
                     movieYear: (bannerMId.type === "movies" || bannerMId.type === undefined) ?
                         request.data.release_date.slice(0, 4) : request.data.first_air_date.slice(0, 4),
                     creatorMovie: (bannerMId.type === "movies" || bannerMId.type === undefined) ?
-                        request.data.credits.crew[creatorIndex] : [],
-                    creatorTv: bannerMId.type === "tvShows" ? request.data.created_by : {}
+                        request.data.credits.crew[creatorIndex] : {},
+                    creatorTv: bannerMId.type === "tvShows" ? request.data.created_by : []
                 })
 
             return request;

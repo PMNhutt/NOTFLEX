@@ -1,8 +1,11 @@
 *{
   margin: 0;
+  
+  /* overflow-x: hidden; */
 }
 
 body {
   background-color: #141414;
   color: #fff;
+
 }

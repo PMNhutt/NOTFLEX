@@ -29,11 +29,14 @@
 
 
 @fix bug
-☐ click outside to close modal if clicked right to that row => cant see arrow to move page
-☐ index 5 row need to expand to the right 
+☐ click outside to close modal if clicked right into to that row => cant see arrow to move page
+✔ index 7 row need to expand to the right @done (3/9/2022, 3:23:51 PM)
 
 
 @update
+☐ limit genre to 4 on hover
+☐ add delay trailer on hover and banner
+☐ add missing data 
 ☐ update page animate?
 ☐ change state to object
 ☐ pause banner trailer when play card trailer
