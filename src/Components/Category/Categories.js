@@ -4,7 +4,6 @@ import './Categories.css'
 import { motion } from 'framer-motion';
 import { GenreContext } from '../../Context/GenreContext'
 
-
 function Categories({ type, fetchCategories }) {
     const [categories, setCategories] = useState([]);
     const genreIds = useContext(GenreContext)
@@ -22,6 +21,7 @@ function Categories({ type, fetchCategories }) {
 
     //filter genre --> transfer data to Row Component
     const genreSelect = useContext(GenreContext)
+
 
     //TvShows
     const handleCategorySelected = () => {
@@ -63,8 +63,8 @@ function Categories({ type, fetchCategories }) {
         <div>
             {type && (
                 <motion.div className="banner_categories"
-                    initial={{ y: -500 }}
-                    animate={{ y: 0 }}
+                    initial={{ opacity: 0}}
+                    animate={{ opacity: 1 }}
                 >
                     {/* TV Shows */}
                     {type === "tvShows" && (genreSelect.cateBannerChange === false
@@ -73,8 +73,8 @@ function Categories({ type, fetchCategories }) {
                         </span>
                         : <motion.span className="selected_category"
                             onClick={() => handleCategorySelected()}
-                            initial={{ y: -500 }}
-                            animate={{ y: 0 }}
+                            initial={{ opacity: 0}}
+                            animate={{opacity: 1 }}
                         >
                             TV Shows
                         </motion.span>)}
@@ -88,8 +88,8 @@ function Categories({ type, fetchCategories }) {
                             ))}
                         </select>
                         : <motion.span className="selected_genre"
-                            initial={{ y: -500 }}
-                            animate={{ y: 0 }}
+                            initial={{ opacity: 0}}
+                            animate={{ opacity: 1 }}
                         >
                             {genreSelect.cateName}
                         </motion.span>)}
@@ -101,8 +101,8 @@ function Categories({ type, fetchCategories }) {
                         </span>
                         : <motion.span className="selected_category"
                             onClick={() => handleCategoryMovieSelected()}
-                            initial={{ y: -500 }}
-                            animate={{ y: 0 }}
+                            initial={{ opacity: 0}}
+                            animate={{ opacity: 1 }}
                         >
                             Movies
                         </motion.span>)}
@@ -115,8 +115,8 @@ function Categories({ type, fetchCategories }) {
                             ))}
                         </select>
                         : <motion.span className="selected_genre"
-                            initial={{ y: -500 }}
-                            animate={{ y: 0 }}
+                            initial={{ opacity: 0}}
+                            animate={{ opacity: 1 }}
                         >
                             {genreSelect.cateMoviesName}
                         </motion.span>)}

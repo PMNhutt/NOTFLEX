@@ -86,7 +86,7 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal, inde
 
     useEffect(() => {
         if (movie.genre_ids != null) {
-            objectGenres.current = genres.filter(genre => movie.genre_ids.includes(genre.id))
+            objectGenres.current = genres.filter(genre => movie.genre_ids.includes(genre.id)).slice(0, 4)
         }
     }, [genres])
 

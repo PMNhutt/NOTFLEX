@@ -93,6 +93,7 @@
     text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
     margin-top: 15px;
     margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
 .banner_btns {
@@ -140,4 +141,19 @@
 
 .embed-youtube {
     overflow: hidden;
+}
+
+.banner-youtube {
+    opacity: 0; 
+    animation: fadein 1s; 
+    animation-delay: 0.9s;
+    -webkit-animation-fill-mode: forwards; 
+    -moz-animation-fill-mode: forwards; 
+    -ms-animation-fill-mode: forwards; 
+    animation-fill-mode: forwards;  
+}
+
+@keyframes fadein { 
+    from { opacity: 0; } 
+    to { opacity: 1;} 
 }

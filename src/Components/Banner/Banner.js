@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, useContext } from 'react';
+import { useState, useEffect, memo, useContext} from 'react';
 import axios from '../../axios';
 import './Banner.css'
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
@@ -12,6 +12,7 @@ function Banner({ fetchBannerData, type, setShowModal }) {
     const baseUrl = process.env.REACT_APP_BASE_URL_LARGE;
     const API_KEY = process.env.REACT_APP_API_KEY
     const [trailerUrl, setTrailerUrl] = useState()
+    const [delayUrl, setDelayUrl] = useState()
 
     const [movie, setMovie] = useState([]);
 
@@ -26,7 +27,7 @@ function Banner({ fetchBannerData, type, setShowModal }) {
     }, [type])
 
     //handle modal
-    function handleModalOpen(id){
+    function handleModalOpen(id) {
         setShowModal(true)
         bannerMId.setBannerM(id)
     }
@@ -73,14 +74,26 @@ function Banner({ fetchBannerData, type, setShowModal }) {
 
             var request = await axios.get(fetchDateType)
             let trailerIndex = request.data.videos.results.findIndex(v => v.type === "Trailer")
-            setTrailerUrl(request.data.videos.results[trailerIndex])
 
-            //set movieID for modal from banner
-            // bannerMId.setBannerM(movie.id)
+            setDelayUrl(request.data.videos.results[trailerIndex])
             return request;
         }
         fetchData();
     }, [movie.id])
+
+    useEffect(() => {
+    const timer = setTimeout(() => {
+        setTrailerUrl(delayUrl)
+    }, 1500);
+
+        return () => clearTimeout(timer);
+    }, [delayUrl])
+
+    useEffect(() => {
+        setTrailerUrl("")
+    }, [genreIds.selectedGenre, genreIds.selectedMovieGenre])
+
+
 
     function truncate(str, n) {
         return str?.length > n ? str.substr(0, n - 1) + " ..." : str;
@@ -92,14 +105,17 @@ function Banner({ fetchBannerData, type, setShowModal }) {
         width: "100%",
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
-            autoplay: 1,
+            // autoplay: 1,
             controls: 0,
-            mute: 1,
+            // mute: 1,
             modestbranding: 1
         }
     };
 
     const checkReady = (e) => {
+        // timerId.current = setTimeout(() => {
+            e.target.playVideo();
+        // }, 2000);
         var res = e.target.playerInfo.playerState
         if (res === -1) {
             setTrailerUrl("")
@@ -107,13 +123,13 @@ function Banner({ fetchBannerData, type, setShowModal }) {
     }
 
     const checkElapsedTime = (e) => {
+        // clearTimeout(timerId)
         const duration = e.target.getDuration();
-        const currentTime = e.target.getCurrentTime();
-        if (currentTime / duration >= 0.7) {
+        var currentTime = e.target.getCurrentTime();
+        if (currentTime / duration >= 0.3) {
             setTrailerUrl("")
         }
     }
-
 
     return (
 
@@ -125,21 +141,22 @@ function Banner({ fetchBannerData, type, setShowModal }) {
                 )`,
             }}
         >
-            {trailerUrl && <Youtube
-                videoId={`${trailerUrl.key}`}
-                containerClassName="embed embed-youtube"
-                onStateChange={(e) => checkElapsedTime(e)}
-                onReady={(e) => checkReady(e)}
-                opts={opts}
-            />
+            {trailerUrl && <div className="banner-youtube">
+                <Youtube
+                    videoId={`${trailerUrl.key}`}
+                    containerClassName="embed-youtube"
+                    onReady={(e) => checkReady(e)}
+                    onStateChange={(e) => checkElapsedTime(e)}
+                    opts={opts}
+                /></div>
             }
             <div className="banner_left_cover"></div>
             <div className="banner_right_cover"></div>
             <div className="banner_bottom_cover"></div>
 
             <motion.div className="banner_content"
-                initial={{ opacity: 0, x: -800 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1}}
                 transition={{ delay: 0.5 }}
             >
                 <h1 className="banner_title">

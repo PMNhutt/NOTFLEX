@@ -29,7 +29,7 @@ function Home({ title, setShowModal, showModal }) {
       exit="hidden"
     >
       <Banner
-        fetchBannerData={requests.fetchTopRated}
+        fetchBannerData={requests.fetchComedyMovies}
         setShowModal={setShowModal}
       />
       {/* <Row

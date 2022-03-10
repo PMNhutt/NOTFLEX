@@ -125,8 +125,8 @@ function Row({ title, fetchUrl, fetchGenres, type, setShowModal }) {
         >
 
             <motion.h2 className="row_title"
-                initial={{ opacity: 0, x: -400 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1}}
                 transition={{ delay: 0.5 }}
             >{title}</motion.h2>
 

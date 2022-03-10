@@ -107,11 +107,6 @@
     width: 20.4vw;
     background: rgb(20,20,20);
     background: linear-gradient(0deg, rgba(20,20,20,1) 59%, rgba(20,20,20,0.9721638655462185) 67%, rgba(20,20,20,0.5519957983193278) 82%, rgba(20,20,20,0.2774859943977591) 89%, rgba(20,20,20,0.15423669467787116) 94%, rgba(20,20,20,0) 100%);
-    /* -o-transition: all 0.8s ease;
-    -ms-transition: all 0.8s ease;
-    -webkit-transition: all 0.8s ease;
-    -moz-transition: all 0.8s ease;
-    transition: all 0.8s ease; */
 }
 
 .poster-title {

@@ -30,7 +30,7 @@ function Movies({ title, setShowModal }) {
       exit="hidden"
     >
       <Banner
-        fetchBannerData={requests.fetchActionMovies}
+        fetchBannerData={requests.fetchComedyMovies}
         setShowModal={setShowModal}
         type="movies"
       />

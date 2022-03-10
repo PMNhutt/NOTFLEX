@@ -26,6 +26,7 @@
 ✔ add genre filter @done (3/3/2022, 3:32:08 PM)
 ☐ add search feature
 ✔ add information modal @done (3/7/2022, 8:42:37 PM)
+☐ mute video on click
 
 
 @fix bug
@@ -34,10 +35,10 @@
 
 
 @update
-☐ limit genre to 4 on hover
-☐ add delay trailer on hover and banner
+✔ limit genre to 4 on hover @done (3/9/2022, 6:16:36 PM)
+☐ add delay --> transition trailer on hover and banner
 ☐ add missing data 
-☐ update page animate?
+✔ update page animate? @done (3/9/2022, 6:16:47 PM)
 ☐ change state to object
 ☐ pause banner trailer when play card trailer
 ☐ pause banner trailer when change browser tab
