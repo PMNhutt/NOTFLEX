@@ -36,7 +36,7 @@
 
 @update
 ✔ limit genre to 4 on hover @done (3/9/2022, 6:16:36 PM)
-☐ add delay --> transition trailer on hover and banner
+✔ add delay --> transition trailer on hover and banner @done (3/11/2022, 2:45:30 PM)
 ☐ add missing data 
 ✔ update page animate? @done (3/9/2022, 6:16:47 PM)
 ☐ change state to object
