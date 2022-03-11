@@ -4,7 +4,8 @@ import requests from '../request'
 import Banner from '../Components/Banner/Banner'
 import Categories from '../Components/Category/Categories'
 import { motion } from 'framer-motion'
-
+import Navbar from '../Components/Navbar/Navbar'
+import Footer from '../Components/Footer/Footer'
 
 function Movies({ title, setShowModal }) {
 
@@ -29,6 +30,7 @@ function Movies({ title, setShowModal }) {
       animate="visible"
       exit="hidden"
     >
+      <Navbar />
       <Banner
         fetchBannerData={requests.fetchComedyMovies}
         setShowModal={setShowModal}
@@ -66,6 +68,7 @@ function Movies({ title, setShowModal }) {
         setShowModal={setShowModal}
         type="movies"
       />
+      <Footer />
     </motion.div>
   )
 }

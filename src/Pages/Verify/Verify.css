@@ -1,0 +1,40 @@
+.logo-verify {
+    margin-top: 1vw;
+    margin-left: 3vw;
+}
+
+.logo {
+    width: 7vw;
+    user-select: none;
+    cursor: pointer;
+}
+
+.acccount {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.acccount .acc {
+    cursor: pointer;
+    border-radius: 5px;
+    width: 10vw;
+    user-select: none;
+}
+
+.acccount .acc:hover{
+    border-radius: 5px;
+    border: 4px solid #fff;
+}
+
+.user h1 {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3.5vw;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}

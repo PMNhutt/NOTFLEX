@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from '../../../axios';
-import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
 import { motion, AnimatePresence } from 'framer-motion';
+import axios from '../../../axios';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 
 function TvEpisodes({ movies, tvId, apiKey }) {
   const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
@@ -86,8 +86,7 @@ function TvEpisodes({ movies, tvId, apiKey }) {
                   exit={{ opacity: 0 }}
                   className="episode-playbtn"
                 >
-                  <PlayCircleOutlineRoundedIcon sx={{ fontSize: '4vw' }}
-                  />
+                  <PlayArrowRoundedIcon sx={{ fontSize: '3vw' }} />
                 </motion.span>}
               <div className="episodes-index">{ep.episode_number}</div>
               <div className="episodes-thumbnail"

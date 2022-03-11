@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef, useContext } from 'react'
 import './MoviePoster.css'
-import axios from '../../axios';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
-import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
-import Youtube from 'react-youtube';
+import { useState, useEffect, useRef, useContext } from 'react'
 import { motion } from 'framer-motion';
 import { ModalContext } from '../../Context/ModalContext'
-
+import Youtube from 'react-youtube';
+import axios from '../../axios';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal, index }) {
     const API_KEY = process.env.REACT_APP_API_KEY;
@@ -168,12 +168,14 @@ function MoviePoster({ baseUrl, movie, genres, movieId, type, setShowModal, inde
                         {truncate(movie.title || movie.name || movie.original_name, 25)}
                     </div>
                     <div className="poster-icons">
-                        <PlayCircleIcon className="poster-icon" />
-                        <AddCircleOutlineIcon className="poster-icon" />
-                        <RecommendOutlinedIcon className="poster-icon" />
-                        <RecommendOutlinedIcon sx={{ transform: 'scale(-1, -1)' }} className="poster-icon" />
+                        <div>
+                        <PlayArrowIcon className="poster-icon-play"/>
+                        <AddOutlinedIcon  className="poster-icon-add" />
+                        <ThumbUpOutlinedIcon  className="poster-icon-like"/>
+                        <ThumbDownAltOutlinedIcon   className="poster-icon-like"/>
+                        </div>
 
-                        <ArrowDropDownCircleOutlinedIcon className="poster-icon" sx={{ transform: 'translateX(100%)' }} onClick={() => handleModalOpen(movieId)} />
+                        <div><KeyboardArrowDownOutlinedIcon className="poster-icon-arrow" onClick={() => handleModalOpen(movieId)} /></div>
                     </div>
                     <div className="poster-info-top">
                         <span className="poster-vote">{movie.vote_average} Rate</span>

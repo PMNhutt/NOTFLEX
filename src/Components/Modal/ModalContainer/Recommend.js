@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import axios from '../../../axios';
-import { motion } from 'framer-motion';
-import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Grid } from '@mui/material';
+import { motion } from 'framer-motion';
+import axios from '../../../axios';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 function Recommend({ id, apiKey, type }) {
     const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
@@ -80,7 +80,7 @@ function Recommend({ id, apiKey, type }) {
                                     exit={{ opacity: 0 }}
                                     className="rec-playbtn"
                                 >
-                                    <PlayCircleOutlineRoundedIcon sx={{ fontSize: '4vw' }}
+                                    <PlayArrowRoundedIcon sx={{ fontSize: '3vw' }}
                                     />
                                 </motion.span>}
 
@@ -95,7 +95,7 @@ function Recommend({ id, apiKey, type }) {
                                         {rec.release_date || rec.first_air_date}
                                     </div>
                                 </div>
-                                <AddCircleOutlineIcon sx={{ fontSize: '3vw' }} className="modal-icon" />
+                                <AddOutlinedIcon sx={{ fontSize: '2.5vw' }} className="modal-icon-add" />
 
                             </div>
                             <div className="rec-info-description">

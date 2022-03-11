@@ -1,13 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
 import { useState, useContext } from 'react'
 import { useLocation } from "react-router"
+import { AnimatePresence } from 'framer-motion'
+import { ModalContext } from '../Context/ModalContext'
 import Home from '../Pages/Home';
 import TVShows from '../Pages/TVShows';
 import Movies from '../Pages/Movies';
 import ScrollToTop from '../Components/ScrollToTop'
 import Modal from './Modal/Modal'
-import { AnimatePresence } from 'framer-motion'
-import { ModalContext } from '../Context/ModalContext'
+import VerifyPIN from '../Pages/Verify/VerifyPIN'
 
 function Main() {
   const location = useLocation()
@@ -21,7 +22,13 @@ function Main() {
       <Modal showModal={modal.showModal} setShowModal={modal.setShowModal} />
       <AnimatePresence exitBeforeEnter onExitComplete={() => modal.setShowModal(false)}>
         <Routes location={location} key={location.key}>
+          
           <Route path="/" element={
+            <VerifyPIN />
+          }
+          />
+
+          <Route path="/home" element={
             <Home
               title="Home - Notflex"
               setShowModal={modal.setShowModal}
@@ -29,6 +36,7 @@ function Main() {
             />
           }
           />
+
           <Route path="/tvshows" element={
             <TVShows
               title="TVShows - Notflex"
@@ -37,6 +45,7 @@ function Main() {
             />
           }
           />
+
           <Route path="/movies" element={
             <Movies
               title="Movies - Notflex"
@@ -45,6 +54,7 @@ function Main() {
             />
           }
           />
+
         </Routes>
       </AnimatePresence>
 

@@ -1,12 +1,14 @@
-import { useState, useEffect, memo, useContext} from 'react';
-import axios from '../../axios';
 import './Banner.css'
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useState, useEffect, memo, useContext, useRef } from 'react';
 import { motion } from 'framer-motion';
-import Youtube from 'react-youtube';
 import { GenreContext } from '../../Context/GenreContext'
 import { ModalContext } from '../../Context/ModalContext'
+import axios from '../../axios';
+import Youtube from 'react-youtube';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import VolumeUpOutlinedIcon from '@mui/icons-material/VolumeUpOutlined';
+import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 
 function Banner({ fetchBannerData, type, setShowModal }) {
     const baseUrl = process.env.REACT_APP_BASE_URL_LARGE;
@@ -82,9 +84,9 @@ function Banner({ fetchBannerData, type, setShowModal }) {
     }, [movie.id])
 
     useEffect(() => {
-    const timer = setTimeout(() => {
-        setTrailerUrl(delayUrl)
-    }, 1500);
+        const timer = setTimeout(() => {
+            setTrailerUrl(delayUrl)
+        }, 1500);
 
         return () => clearTimeout(timer);
     }, [delayUrl])
@@ -100,6 +102,14 @@ function Banner({ fetchBannerData, type, setShowModal }) {
     }
 
     //trailer
+    const trailerRef = useRef()
+
+    //handle video 
+    const handleVolumeClick = () => {
+        bannerMId.setBannerVolumeClicked(prev => !prev)
+        bannerMId.bannerVolumeClicked ? trailerRef.current.internalPlayer.unMute() : trailerRef.current.internalPlayer.mute()
+    }
+
     const opts = {
         height: "822",
         width: "100%",
@@ -107,15 +117,15 @@ function Banner({ fetchBannerData, type, setShowModal }) {
             // https://developers.google.com/youtube/player_parameters
             // autoplay: 1,
             controls: 0,
-            // mute: 1,
+            // mute: bannerMId.bannerVolumeClicked ? 1 : 0,
             modestbranding: 1
         }
     };
 
     const checkReady = (e) => {
-        // timerId.current = setTimeout(() => {
-            e.target.playVideo();
-        // }, 2000);
+        bannerMId.bannerVolumeClicked ? trailerRef.current.internalPlayer.mute() : trailerRef.current.internalPlayer.unMute()
+        e.target.setVolume(70);
+        e.target.playVideo();
         var res = e.target.playerInfo.playerState
         if (res === -1) {
             setTrailerUrl("")
@@ -143,6 +153,7 @@ function Banner({ fetchBannerData, type, setShowModal }) {
         >
             {trailerUrl && <div className="banner-youtube">
                 <Youtube
+                    ref={trailerRef}
                     videoId={`${trailerUrl.key}`}
                     containerClassName="embed-youtube"
                     onReady={(e) => checkReady(e)}
@@ -155,8 +166,8 @@ function Banner({ fetchBannerData, type, setShowModal }) {
             <div className="banner_bottom_cover"></div>
 
             <motion.div className="banner_content"
-                initial={{ opacity: 0}}
-                animate={{ opacity: 1}}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
             >
                 <h1 className="banner_title">
@@ -179,7 +190,14 @@ function Banner({ fetchBannerData, type, setShowModal }) {
                     </button>
                 </div>
 
+
             </motion.div>
+
+            <div className="banner_btns-right" onClick={() => handleVolumeClick()}>
+                {bannerMId.bannerVolumeClicked ? <VolumeOffOutlinedIcon sx={{ fontSize: '1.8em' }} /> :
+                    <VolumeUpOutlinedIcon sx={{ fontSize: '1.8em' }} />}
+            </div>
+
         </header>
     )
 }

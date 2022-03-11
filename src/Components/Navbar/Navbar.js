@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import logo from '../../logo/netflix_acc.png';
 import './Navbar.css';
+import React, { useEffect, useState } from 'react';
+import { motion} from 'framer-motion';
 import { Link, NavLink } from "react-router-dom";
+import logo from '../../logo/netflix_acc.png';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { motion} from 'framer-motion';
 
 function Navbar() {
   const [scroll, setScroll] = useState(false);
@@ -33,8 +33,8 @@ function Navbar() {
     >
 
       <ul className="navbar-left">
-        <li style={{lineHeight: 0}}><Link to="/"><img className="navbar-logo" src="https://fontmeme.com/permalink/220212/2b79b3189fcc6673d3153dee728478eb.png" alt="netflix-font" border="0" /></Link></li>
-        <li className="navbar-link "><NavLink to="/" className={(navData) => navData.isActive ? "active" : "nav-child"}>Home</NavLink></li>
+        <li style={{lineHeight: 0}}><Link to="/home"><img className="navbar-logo" src="https://fontmeme.com/permalink/220212/2b79b3189fcc6673d3153dee728478eb.png" alt="netflix-font" border="0" /></Link></li>
+        <li className="navbar-link "><NavLink to="/home" className={(navData) => navData.isActive ? "active" : "nav-child"}>Home</NavLink></li>
         <li className="navbar-link " ><NavLink to="/tvshows" className={(navData) => navData.isActive ? "active" : "nav-child"} >TV Shows</NavLink></li>
         <li className="navbar-link"><NavLink to="/movies" className={(navData) => navData.isActive ? "active" : "nav-child"}>Movies</NavLink></li>
       </ul>
@@ -42,7 +42,7 @@ function Navbar() {
       <div className="navbar-right">
         <SearchIcon sx={{marginRight: '1.3vw', fontSize: '2vw', cursor: 'pointer'}}/>
         <NotificationsIcon sx={{marginRight: '1.3vw', fontSize: '2vw', cursor: 'pointer'}}/>
-        <Link to="/"><img className="navbar-acc" src={logo} alt="account_logo" border="0" /></Link>
+        <Link to="/home"><img className="navbar-acc" src={logo} alt="account_logo" border="0" /></Link>
         <ArrowDropDownIcon sx={{cursor: 'pointer'}}/>
       </div>
     </motion.div>

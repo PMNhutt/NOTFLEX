@@ -1,9 +1,7 @@
-import './App.css';
-import Navbar from './Components/Navbar/Navbar'
-import Footer from './Components/Footer/Footer'
-import Main from './Components/Main'
 import { ModalContext } from './Context/ModalContext'
 import { useEffect, useContext } from 'react'
+import './App.css';
+import Main from './Components/Main'
 
 function App() {
   const modal = useContext(ModalContext)
@@ -14,9 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
       <Main />
-      <Footer />
     </div>
   );
 }

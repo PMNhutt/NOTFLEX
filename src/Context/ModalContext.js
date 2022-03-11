@@ -7,12 +7,14 @@ function ModalProvider({ children }) {
     const [showModal, setShowModal] = useState(false)
     const [bannerMovie, setBannerM] = useState()
     const [type, setType] = useState()
+    const [bannerVolumeClicked, setBannerVolumeClicked] = useState(false)
     
 
     const values = {
         showModal, setShowModal, 
         bannerMovie, setBannerM,
         type, setType,
+        bannerVolumeClicked, setBannerVolumeClicked,
     }
 
     return (

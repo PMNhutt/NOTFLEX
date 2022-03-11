@@ -3,7 +3,8 @@ import Row from '../Components/Row/Row'
 import requests from '../request'
 import Banner from '../Components/Banner/Banner'
 import { motion } from 'framer-motion'
-
+import Navbar from '../Components/Navbar/Navbar'
+import Footer from '../Components/Footer/Footer'
 
 function Home({ title, setShowModal, showModal }) {
 
@@ -28,8 +29,9 @@ function Home({ title, setShowModal, showModal }) {
       animate="visible"
       exit="hidden"
     >
+      <Navbar />
       <Banner
-        fetchBannerData={requests.fetchComedyMovies}
+        fetchBannerData={requests.fetchActionMovies}
         setShowModal={setShowModal}
       />
       {/* <Row
@@ -88,6 +90,7 @@ function Home({ title, setShowModal, showModal }) {
         setShowModal={setShowModal}
         type="movies"
       />
+      <Footer />
     </motion.div>
   )
 }

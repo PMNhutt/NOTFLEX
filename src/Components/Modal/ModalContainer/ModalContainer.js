@@ -1,13 +1,14 @@
 import { useState, useEffect, useContext, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import axios from '../../../axios';
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 import { ModalContext } from '../../../Context/ModalContext';
 import { TvEpisodes } from './TvEpisodes'
 import { Recommend } from './Recommend'
+import axios from '../../../axios';
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
 
 function ModalContainer({ setShowModal }) {
     const baseUrl = process.env.REACT_APP_BASE_URL_LARGE;
@@ -108,9 +109,9 @@ function ModalContainer({ setShowModal }) {
                             <span>Play</span>
                         </button>
 
-                        <AddCircleOutlineIcon sx={{ fontSize: '3vw' }} className="modal-icon" />
-                        <RecommendOutlinedIcon sx={{ fontSize: '3vw' }} className="modal-icon" />
-                        <RecommendOutlinedIcon sx={{ transform: 'scale(-1, -1)', fontSize: '3vw' }} className="modal-icon" />
+                        <AddOutlinedIcon sx={{ fontSize: '2.5vw' }} className="modal-icon-add" />
+                        <ThumbUpOutlinedIcon sx={{ fontSize: '1.9vw' }} className="modal-icon-like" />
+                        <ThumbDownAltOutlinedIcon sx={{ fontSize: '1.9vw' }} className="modal-icon-like" />
                     </div>
 
                 </div>

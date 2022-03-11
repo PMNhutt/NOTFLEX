@@ -100,6 +100,24 @@
     display: flex;
 }
 
+.banner_btns-right {
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px 5px 2px 5px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 60%;
+    right: 6vw;
+    z-index: 99;
+    filter: drop-shadow(0px 0px 2.6px rgb(0 0 0 / 1));
+
+}
+
+.banner_btns-right:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 .banner_btn{
     font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     margin-right: 0.6vw;
