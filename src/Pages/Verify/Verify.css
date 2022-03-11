@@ -30,6 +30,7 @@
 }
 
 .user h1 {
+    user-select: none;
     position: absolute;
     top: 25%;
     left: 50%;
