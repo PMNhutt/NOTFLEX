@@ -10,16 +10,19 @@ A ReactJs practice with simple function:
 
 <img src = "preview/Home.PNG">
 
+-Hover to show trailer and info
 
 <img src = "preview/HoverCard.PNG">
 
--Hover to show trailer and info
+-Show movie information
 
 <img src = "preview/MovieInfo.PNG">
 
 -Display more related movies
 
 <img src = "preview/MovieInfo2.PNG">
+
+-TV Shows
 
 <img src = "preview/TvShow.PNG">
 
