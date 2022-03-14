@@ -4,7 +4,7 @@ A ReactJs practice with simple function:
  + Filter movie season (for Tv Shows)
  + Popup movie information modal
 
-##Preview
+## Preview
 
 -Home page
 
