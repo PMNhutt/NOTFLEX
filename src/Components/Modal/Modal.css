@@ -204,6 +204,33 @@
 
 
 /* Tv Episodes css */
+
+.episodes-collapsible {
+    width: 100%;
+    border-bottom: 2px solid #404040;
+    height: 0;
+    position: relative;
+    top: -2px;
+    display: flex;
+    justify-content: center;
+}
+
+.episodes-collapsible .showAll-btn {
+    position: absolute;
+    bottom: -17px;
+    width: fit-content;
+    /* padding: 0 2px 0 2px; */
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    background-color: #2a2a2a99;
+    display: flex;
+}
+
+.episodes-collapsible .showAll-btn:hover{
+    border: 2px solid white;
+}
+
 .modal-info-scnd {
     padding: 50px 50px 0 50px;
 }

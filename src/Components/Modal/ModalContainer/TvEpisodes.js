@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from '../../../axios';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 function TvEpisodes({ movies, tvId, apiKey }) {
   const baseUrl = process.env.REACT_APP_BASE_URL_SMALL;
   const [episodes, setEpisodes] = useState([])
+  const [isCollapsible, setIsCollapsible] = useState(false)
+  const [collapsed, setCollapsed] = useState(false)
   const [isHover, setIsHover] = useState({
     isHovered: {}
   })
@@ -18,12 +22,17 @@ function TvEpisodes({ movies, tvId, apiKey }) {
       const tvSeasonInfo = `/tv/${tvId}/season/${tvSeason}?api_key=${apiKey}&language=en-US`
 
       var request = await axios.get(tvSeasonInfo)
-      // console.log(request);
-      setEpisodes(request.data.episodes)
+      // console.log(request.data.episodes.slice(0, 10));
+      if (!collapsed && request.data.episodes.length > 10) {
+        setEpisodes(request.data.episodes.slice(0, 10))
+        setIsCollapsible(true)
+      } else {
+        setEpisodes(request.data.episodes)
+      }
       return request;
     }
     fetchData();
-  }, [tvId, tvSeason])
+  }, [tvId, tvSeason, collapsed])
 
   //hover
   function handleMouseEnter(index) {
@@ -51,6 +60,8 @@ function TvEpisodes({ movies, tvId, apiKey }) {
     }
   }) => {
     setTvSeason(value)
+    setCollapsed(false)
+    setIsCollapsible(false)
   }
 
   return (
@@ -99,6 +110,12 @@ function TvEpisodes({ movies, tvId, apiKey }) {
             </div>
           ))}
         </AnimatePresence>
+
+        {isCollapsible && <div className="episodes-collapsible">
+          <div className="showAll-btn" onClick={() => setCollapsed(prev => !prev)}>
+            {!collapsed ? <ExpandMoreIcon sx={{fontSize: '1.8em'}} /> : <ExpandLessIcon sx={{fontSize: '1.8em'}}/>}
+            </div>
+        </div>}
 
       </div>
 
