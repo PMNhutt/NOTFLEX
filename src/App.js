@@ -2,6 +2,8 @@ import { ModalContext } from './Context/ModalContext'
 import { useEffect, useContext } from 'react'
 import './App.css';
 import Main from './Components/Main'
+import { BrowserView, MobileView } from 'react-device-detect';
+import mobileSvg from './logo/relax.svg';
 
 function App() {
   const modal = useContext(ModalContext)
@@ -11,9 +13,15 @@ function App() {
   }, [modal.showModal])
 
   return (
-    <div className="App">
-      <Main />
-    </div>
+    <>
+      <BrowserView className="App">
+        <Main />
+      </BrowserView>
+      <MobileView className="Mobile">
+        <img src={mobileSvg} />
+        <h2>Notflex mobile version in progress...</h2>
+      </MobileView>
+    </>
   );
 }
 

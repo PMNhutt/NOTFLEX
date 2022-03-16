@@ -124,7 +124,7 @@ function Banner({ fetchBannerData, type, setShowModal }) {
 
     const checkReady = (e) => {
         bannerMId.bannerVolumeClicked ? trailerRef.current.internalPlayer.mute() : trailerRef.current.internalPlayer.unMute()
-        e.target.setVolume(70);
+        e.target.setVolume(50);
         e.target.playVideo();
         var res = e.target.playerInfo.playerState
         if (res === -1) {

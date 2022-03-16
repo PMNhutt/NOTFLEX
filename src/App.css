@@ -9,3 +9,22 @@ body {
   color: #fff;
 
 }
+
+.Mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  height: 90vh;
+}
+
+.Mobile img {
+  margin-bottom: 10px;
+  height: 50vw;
+}
+
+.Mobile h2 {
+  font-size: 5vw;
+  display: flex;
+  justify-content: center;
+}
