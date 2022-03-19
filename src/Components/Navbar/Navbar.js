@@ -39,6 +39,11 @@ function Navbar() {
         <li className="navbar-link"><NavLink to="/movies" className={(navData) => navData.isActive ? "active" : "nav-child"}>Movies</NavLink></li>
       </ul>
 
+      <div className="navbar-res">
+        Browse
+        <ArrowDropDownIcon />
+      </div>
+
       <div className="navbar-right">
         <SearchIcon sx={{ marginRight: '1.3vw', fontSize: '2vw', cursor: 'pointer' }} />
         <NotificationsIcon sx={{ marginRight: '1.3vw', fontSize: '2vw', cursor: 'pointer' }} />

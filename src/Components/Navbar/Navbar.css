@@ -60,6 +60,23 @@
     font-size: 1vw;
 }
 
+.navbar-res {
+    margin-left: 4vw;
+    display: none;
+}
+
+@media screen and (max-width: 1033px) {
+    .navbar-left {
+        display: none;
+    }
+
+    .navbar-res {
+        display: flex;
+        align-items: center;
+        display: block;
+    }
+}
+
 .navbar-right {
     margin-right: 4vw;
     display: flex;
