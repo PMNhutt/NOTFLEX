@@ -22,13 +22,13 @@ function App() {
 
   return (
     <>
-      <div className="App">
+      <BrowserView className="App">
         <Main />
-      </div>
-      {/* <MobileView className="Mobile">
+      </BrowserView>
+      <MobileView className="Mobile">
         <div id="res-logo" />
         <h2>Notflex mobile version in progress...</h2>
-      </MobileView> */}
+      </MobileView>
     </>
   );
 }
